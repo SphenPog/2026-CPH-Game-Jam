@@ -25,6 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	#dragging click tracking
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			_update_surface_normal()
 			is_dragging = true
 			charge_timer = 0.0
 			drag_start_pos = get_global_mouse_position()
@@ -38,6 +39,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		current_drag_pos = get_global_mouse_position()
 		queue_redraw()
 
+func _get_constrained_drag_vector() -> Vector2:
+	var raw_drag_vector = drag_start_pos - current_drag_pos
+	if raw_drag_vector.length_squared() < 1.0:
+		return Vector2.ZERO
+	
+	var raw_launch_dir = raw_drag_vector.normalized()
+	var constrained_launch_dir = _clamp_launch_vector_to_surface(raw_launch_dir, current_surface_normal)
+	
+	return constrained_launch_dir * raw_drag_vector.length()
+
 func _get_combined_power_ratio() -> float:
 	var drag_vector = drag_start_pos - current_drag_pos
 	var distance_ratio = clamp(drag_vector.length() / max_drag_distance, 0.0, 1.0)
@@ -48,7 +59,7 @@ func _get_combined_power_ratio() -> float:
 #motion applied after dragging
 func _launch_softbody() -> void:
 	var power_ratio: float = _get_combined_power_ratio()
-	var drag_vector = drag_start_pos - current_drag_pos
+	var drag_vector = _get_constrained_drag_vector()
 	
 	if drag_vector.length_squared() < 1.0 or power_ratio < 0.01:
 		return
@@ -56,9 +67,7 @@ func _launch_softbody() -> void:
 	var launch_direction = drag_vector.normalized()
 	
 	var launch_force = launch_direction * (max_drag_distance * launch_force_multiplier * power_ratio)
-	var rotation_delta_x = drag_vector.x * rotation_force_multiplier * power_ratio
-	
-	var rotation_torque = rotation_delta_x * rotation_force_multiplier
+	var rotation_torque = drag_vector.x * rotation_force_multiplier * power_ratio
 	
 	if has_method("apply_force"):
 		call("apply_force", launch_force)
@@ -73,6 +82,10 @@ func _get_current_allowed_max_distance() -> float:
 func _draw() -> void:
 	if is_dragging:
 		var local_start = to_local(drag_start_pos)
+		var constrained_vector = _get_constrained_drag_vector()
+		if constrained_vector.length() < 3.0:
+			return
+		
 		var local_current = to_local(current_drag_pos)
 		var drag_dir = local_start - local_current
 		
@@ -84,12 +97,10 @@ func _draw() -> void:
 		var allowed_max_dist = _get_current_allowed_max_distance()
 		var current_distance = min(raw_mouse_distance, allowed_max_dist)
 		
-		var power_ratio: float = current_distance / max_drag_distance
+		var power_ratio: float = _get_combined_power_ratio()
 		var visual_length = max_drag_distance * power_ratio
 		
 		local_current = local_start - (drag_dir.normalized() * visual_length)
-		
-		
 		
 		var shape_color: Color
 		if power_ratio < 0.5:
@@ -136,3 +147,34 @@ func _process(delta: float) -> void:
 		if charge_timer < charge_time_sec:
 			charge_timer = min(charge_timer + delta, charge_time_sec)
 		queue_redraw()
+
+#ground and launch arc detection
+var current_surface_normal: Vector2 = Vector2.UP
+var is_grounded: bool = false
+
+func _update_surface_normal() -> void:
+	var space_state = get_world_2d().direct_space_state
+	
+	var ray_length: float = 30.0
+	var query = PhysicsRayQueryParameters2D.create(
+		global_position,
+		global_position + Vector2.DOWN * ray_length
+	)
+	var result = space_state.intersect_ray(query)
+	
+	if result and result.has("normal"):
+		is_grounded = true
+		current_surface_normal = result.normal
+	else:
+		is_grounded = false
+		current_surface_normal = Vector2.UP
+
+func _clamp_launch_vector_to_surface(launch_dir: Vector2, normal: Vector2) -> Vector2:
+	if launch_dir.dot(normal) < 0.0:
+		var tangent = Vector2(-normal.y, normal.x)
+		
+		if launch_dir.dot(tangent) < 0.0:
+			tangent = -tangent
+			
+		return tangent.normalized()
+	return launch_dir.normalized()
