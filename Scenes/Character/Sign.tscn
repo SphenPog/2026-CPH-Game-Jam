@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cvrffhvhon14y"]
+
+[ext_resource type="Script" uid="uid://c0ru3rla7n1nv" path="res://Scenes/Character/Scripts/Sign.gd" id="1_n6fd5"]
+[ext_resource type="Texture2D" uid="uid://drn2ea0cpye8" path="res://Assets/wood-sign.png" id="2_vtydh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brx3m"]
+size = Vector2(54, 55)
+
+[node name="Sign" type="Area2D" unique_id=259984632]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_n6fd5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1496981532]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_vtydh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987464851]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_brx3m")

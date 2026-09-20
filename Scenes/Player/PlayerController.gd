@@ -12,21 +12,42 @@ extends QSoftBodyNode
 @export var max_drag_distance: float = 180.0   # drag cap after 3 seconds of holding
 @export var charge_time_sec: float = 3.0
 
+@export var softbody_texture: Texture2D
+
 var is_dragging: bool = false
 var drag_start_pos: Vector2 = Vector2.ZERO
 var current_drag_pos: Vector2 = Vector2.ZERO
 var charge_timer: float = 0.0
 
 var _overlay: ArrowOverlay
+var _nearby_interactables: Array[Interactible] = []
+@onready var interaction_detector: Area2D = $InteractionDetector
 
 func _ready() -> void:
-	call_deferred("_init_polygon_points")
-	
 	_overlay = ArrowOverlay.new()
 	_overlay.controller = self
 	add_child(_overlay)
+	
+	# initiate interaction settings
+	if DialogueUI:
+		DialogueUI.dialogue_finished.connect(_on_dialogue_finished)
+	
+	if interaction_detector:
+		interaction_detector.top_level = true
+		
+		interaction_detector.area_entered.connect(_on_interaction_area_entered)
+		interaction_detector.area_exited.connect(_on_interaction_area_exited)
+	
+	DialogueUI.dialogue_started.connect(func(): is_dragging = false; set_process_unhandled_input(false))
+	DialogueUI.dialogue_finished.connect(func(): set_process_unhandled_input(true))
 
+## input from player
 func _unhandled_input(event: InputEvent) -> void:
+	# interaction key
+	if event.is_action_pressed("interact"):
+		_try_interact()
+	
+	# mouse movement for flinging
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			_update_surface_normal()
@@ -64,7 +85,9 @@ func _get_combined_power_ratio() -> float:
 	
 	return distance_ratio * charge_ratio
 
-#motion applied after dragging
+##
+##motion applied after dragging
+##
 func _launch_softbody() -> void:
 	var power_ratio: float = _get_combined_power_ratio()
 	var drag_vector = _get_constrained_drag_vector()
@@ -88,8 +111,19 @@ func _process(delta: float) -> void:
 		if charge_timer < charge_time_sec:
 			charge_timer = min(charge_timer + delta, charge_time_sec)
 		_redraw_overlay()
+	
+	_update_interaction_detector_position()
 
-#ground and launch arc detection
+func _update_interaction_detector_position() -> void:
+	if interaction_detector:
+		if has_method("get_aabb"):
+			interaction_detector.global_position = get_aabb().get_center()
+		else:
+			interaction_detector.global_position = global_position
+
+##
+## ground and launch arc detection
+##
 var current_surface_normal: Vector2 = Vector2.UP
 var is_grounded: bool = false
 
@@ -121,6 +155,9 @@ func _clamp_launch_vector_to_surface(launch_dir: Vector2, normal: Vector2) -> Ve
 		return tangent.normalized()
 	return launch_dir.normalized()
 
+##
+## collision effects
+##
 func _on_collision(info: Dictionary) -> bool:
 	var slime_component = get_node_or_null("SlimeTrailC")
 	if slime_component and slime_component.has_method("handle_collision"):
@@ -132,6 +169,47 @@ func _on_collision(info: Dictionary) -> bool:
 		
 	return true
 
+##
+## Dialogue section
+##
+func _try_interact() -> void:
+	_nearby_interactables = _nearby_interactables.filter(func(item): return is_instance_valid(item))
+	
+	if not _nearby_interactables.is_empty():
+		var target = _nearby_interactables[0]
+		target.interact(self)
+
+func _on_interaction_area_entered(area: Area2D) -> void:
+	if area is Interactible and area.is_interactable:
+		if not _nearby_interactables.has(area):
+			_nearby_interactables.append(area)
+			if not DialogueUI.is_active:
+				area.show_prompt()
+
+func _on_interaction_area_exited(area: Area2D) -> void:
+	if area is Interactible:
+		_nearby_interactables.erase(area)
+		area.hide_prompt()
+
+func _on_dialogue_finished() -> void:
+	refresh_interaction_prompts()
+
+func refresh_interaction_prompts() -> void:
+	if not interaction_detector:
+		return
+
+	_nearby_interactables.clear()
+	var overlapping = interaction_detector.get_overlapping_areas()
+
+	for area in overlapping:
+		if area is Interactible and area.is_interactable:
+			_nearby_interactables.append(area)
+			if not DialogueUI.is_active:
+				area.show_prompt()
+
+## 
+## arrow class for fling visual
+##
 class ArrowOverlay extends Node2D:
 	var controller: Node
 
