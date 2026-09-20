@@ -82,25 +82,24 @@ func _get_current_allowed_max_distance() -> float:
 func _draw() -> void:
 	if is_dragging:
 		var local_start = to_local(drag_start_pos)
+		var raw_mouse_distance = (drag_start_pos - current_drag_pos).length()
+		if raw_mouse_distance < 3.0:
+			return #avoid divide by small floats
+		
 		var constrained_vector = _get_constrained_drag_vector()
 		if constrained_vector.length() < 3.0:
 			return
 		
-		var local_current = to_local(current_drag_pos)
-		var drag_dir = local_start - local_current
+		var power_ratio = _get_combined_power_ratio()
+		var visual_length = max_drag_distance * power_ratio
 		
-		var raw_mouse_distance = drag_dir.length()
+		var launch_dir_normalized = constrained_vector.normalized()
+		var pull_dir_normalized = -launch_dir_normalized
 		
-		if raw_mouse_distance < 3.0:
-			return #avoid divide by small floats
+		var local_current = local_start + (pull_dir_normalized * visual_length)
 		
 		var allowed_max_dist = _get_current_allowed_max_distance()
 		var current_distance = min(raw_mouse_distance, allowed_max_dist)
-		
-		var power_ratio: float = _get_combined_power_ratio()
-		var visual_length = max_drag_distance * power_ratio
-		
-		local_current = local_start - (drag_dir.normalized() * visual_length)
 		
 		var shape_color: Color
 		if power_ratio < 0.5:
