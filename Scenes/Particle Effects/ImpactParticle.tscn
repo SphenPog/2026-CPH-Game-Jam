@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b6707370lrljg"]
+
+[ext_resource type="Script" uid="uid://dm0svsrr5mp0o" path="res://Scenes/Particle Effects/ImpactParticle.gd" id="1_5qkhb"]
+
+[sub_resource type="Curve" id="Curve_5qkhb"]
+_data = [Vector2(0.02702704, 0), 0.0, 0.0, 0, 0, Vector2(0.9932432, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5qkhb"]
+curve = SubResource("Curve_5qkhb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5qkhb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(35, 0.1, 0)
+direction = Vector3(3, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 49.23
+gravity = Vector3(0, 0, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+scale_min = 1.5
+scale_max = 12.259999
+scale_curve = SubResource("CurveTexture_5qkhb")
+
+[node name="Node2D" type="GPUParticles2D" unique_id=485734667]
+modulate = Color(0.80049086, 0.80049074, 0.80049074, 1)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_5qkhb")
+script = ExtResource("1_5qkhb")

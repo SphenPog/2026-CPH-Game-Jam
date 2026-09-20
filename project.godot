@@ -25,6 +25,7 @@ enabled=PackedStringArray("res://addons/quarkphysics/plugin.cfg")
 
 [physics]
 
+common/physics_ticks_per_second=180
 3d/physics_engine="Jolt Physics"
 
 [rendering]

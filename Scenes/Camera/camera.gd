@@ -1,49 +1,94 @@
 extends Camera2D
 
-@export var target_softbody: Node2D # Assign your QSoftBodyNode in the Inspector
+@export var target_player: Node2D
 @export var follow_speed: float = 8.0
-@export var debug_mode: bool = true
+@export var lead_factor: float = 0.25
+@export var max_lead_distance: float = 120.0
+@export var shake_intensity_factor: float = 1.0
 
-var _debug_timer: float = 0.0
+@export_group("Impact Downward Shove")
+@export var min_downward_speed: float = 200.0
+@export var impact_threshold: float = 400.0
+@export var max_impact_speed_drop: float = 1000.0
+@export var max_overshoot_impulse: float = 500.0
+@export var spring_stiffness: float = 2.0
+@export var spring_damping: float = 1.5
+
+var last_valid_position: Vector2 = Vector2.ZERO
+var previous_speed: Vector2 = Vector2.ZERO
+
+var shake_intensity: float = 0.0
+var impact_offset: Vector2 = Vector2.ZERO
+var impact_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	top_level = true 
 	make_current()
+	top_level = true
+	
+	if not target_player and get_parent() is Node2D and get_parent() != get_tree().root:
+		target_player = get_parent() as Node2D
 
 func _physics_process(delta: float) -> void:
-	var should_print: bool = false
-	if debug_mode:
-		_debug_timer += delta
-		if _debug_timer >= 1.0:
-			should_print = true
-			_debug_timer = 0.0
-
-	if not is_instance_valid(target_softbody):
-		if should_print:
-			print("[Camera Debug] ERROR: target_softbody is not assigned!")
+	if not is_instance_valid(target_player):
 		return
+	
+	var current_pos: Vector2 = Vector2.ZERO
+	
+	if target_player.has_method("get_aabb"):
+		var aabb: Rect2 = target_player.call("get_aabb")
+		current_pos = aabb.get_center()
+	
+	if current_pos == Vector2.ZERO:
+		if last_valid_position != Vector2.ZERO:
+			current_pos = last_valid_position
+		else:
+			return
+	
+	if last_valid_position == Vector2.ZERO:
+		last_valid_position = current_pos
+	
+	#Velocity and Speed
+	var velocity: Vector2 = (current_pos - last_valid_position) / max(delta, 0.001)
+	
+	#impact Detection
+	if previous_speed.y > min_downward_speed:
+		var vertical_speed_drop: float = previous_speed.y - velocity.y
+		
+		if vertical_speed_drop > impact_threshold:
+			var impact_ratio: float = clamp(
+				(vertical_speed_drop - impact_threshold) / max(max_impact_speed_drop - impact_threshold, 1.0),
+				0.0,
+				1.0
+			)
+			# Push the spring downward smoothly with an impulse
+			impact_velocity.y += max_overshoot_impulse * impact_ratio
+	
+	previous_speed = velocity
+	last_valid_position = current_pos
+	
+	var offset_target: Vector2 = velocity * lead_factor
+	if offset_target.length() > max_lead_distance:
+		offset_target = offset_target.normalized() * max_lead_distance
+	
+	var final_target: Vector2 = current_pos + offset_target
+	global_position = global_position.lerp(final_target, follow_speed * delta)
 
-	var target_pos: Vector2 = Vector2.ZERO
-	var method_used: String = "None"
+func _process(delta: float) -> void:
+	var spring_force: Vector2 = -spring_stiffness * impact_offset
+	var damping_force: Vector2 = -spring_damping * impact_velocity
+	impact_velocity += (spring_force + damping_force) * delta
+	impact_offset += impact_velocity * delta
+	
+	var jitter_offset = Vector2.ZERO
+	if shake_intensity > 0.0:
+		jitter_offset = Vector2(
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity)
+		)
+		shake_intensity = move_toward(shake_intensity, 0.0, delta * 35.0)
+	
+	offset = jitter_offset + impact_offset
 
-	# 1. Primary Method: Calculate center from active particle AABB bounding box
-	if target_softbody.has_method("get_aabb"):
-		var aabb: Rect2 = target_softbody.call("get_aabb")
-		target_pos = aabb.get_center()
-		method_used = "get_aabb().get_center()"
-
-	# 2. Fallback: Query first mesh if get_aabb fails
-	if (target_pos == Vector2.ZERO or target_pos == Vector2(466, 204)) and target_softbody.has_method("get_mesh_count"):
-		var mesh_count: int = target_softbody.call("get_mesh_count")
-		if mesh_count > 0:
-			var mesh = target_softbody.call("get_mesh_at", 0)
-			if mesh and mesh.has_method("get_global_position"):
-				target_pos = mesh.call("get_global_position")
-				method_used = "get_mesh_at(0).get_global_position()"
-
-	if should_print:
-		print("[Camera Debug] Method: ", method_used, " -> Target Pos: ", target_pos, " | Camera Pos: ", global_position)
-
-	# Smoothly move camera toward active softbody center
-	if target_pos != Vector2.ZERO:
-		global_position = global_position.lerp(target_pos, follow_speed * delta)
+func add_shake(ratio: float) -> void:
+	var new_shake = clamp(ratio, 0.0, 1.0) * shake_intensity_factor
+	shake_intensity = max(shake_intensity, new_shake)

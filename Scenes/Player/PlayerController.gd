@@ -17,11 +17,16 @@ var drag_start_pos: Vector2 = Vector2.ZERO
 var current_drag_pos: Vector2 = Vector2.ZERO
 var charge_timer: float = 0.0
 
+var _overlay: ArrowOverlay
+
 func _ready() -> void:
 	call_deferred("_init_polygon_points")
+	
+	_overlay = ArrowOverlay.new()
+	_overlay.controller = self
+	add_child(_overlay)
 
 func _unhandled_input(event: InputEvent) -> void:
-	#dragging click tracking
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			_update_surface_normal()
@@ -29,14 +34,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			charge_timer = 0.0
 			drag_start_pos = get_viewport().get_mouse_position()
 			current_drag_pos = drag_start_pos
-			queue_redraw()
+			_redraw_overlay()
 		elif is_dragging:
 			is_dragging = false
 			_launch_softbody()
-			queue_redraw()
+			_redraw_overlay()
 	elif event is InputEventMouseMotion and is_dragging:
 		current_drag_pos = get_viewport().get_mouse_position()
-		queue_redraw()
+		_redraw_overlay()
+
+func _redraw_overlay() -> void:
+	if _overlay:
+		_overlay.queue_redraw()
 
 func _get_constrained_drag_vector() -> Vector2:
 	var raw_drag_vector = drag_start_pos - current_drag_pos
@@ -74,78 +83,11 @@ func _get_current_allowed_max_distance() -> float:
 	var charge_ratio = charge_timer / charge_time_sec
 	return lerp(min_drag_distance, max_drag_distance, charge_ratio)
 
-func _draw() -> void:
-	if is_dragging:
-		var screen_to_local = get_global_transform_with_canvas().affine_inverse()
-		var local_start = screen_to_local * drag_start_pos
-		
-		var raw_mouse_distance = (drag_start_pos - current_drag_pos).length()
-		if raw_mouse_distance < 3.0:
-			return # avoid divide by small floatss
-		
-		var constrained_vector = _get_constrained_drag_vector()
-		if constrained_vector.length() < 3.0:
-			return
-		
-		var power_ratio = _get_combined_power_ratio()
-		var visual_length = max_drag_distance * power_ratio
-		
-		var launch_dir_normalized = constrained_vector.normalized()
-		var pull_dir_normalized = -launch_dir_normalized
-		
-		var local_current = local_start + (pull_dir_normalized * visual_length)
-		
-		var allowed_max_dist = _get_current_allowed_max_distance()
-		var current_distance = min(raw_mouse_distance, allowed_max_dist)
-		#Drawing the arrow and color blending
-		var shape_color: Color
-		if power_ratio < 0.5:
-			shape_color = Color.GREEN.lerp(Color.YELLOW, power_ratio * 2.0)
-		
-		else:
-			shape_color = Color.YELLOW.lerp(Color.RED, (power_ratio - 0.5) * 2.0)
-		
-		var fill_color = shape_color
-		fill_color.a = lerp(min_alpha, max_alpha, power_ratio)
-		
-		var dir_normalized = (local_current - local_start).normalized()
-		
-		if power_ratio > 0.5:
-			var red_intensity = (power_ratio - 0.5) * 2.0
-			var time_offset = sin(Time.get_ticks_msec() * 0.05) * 0.5
-			var jitter = randf_range(-0.5, 0.5)
-			var shake_angle = deg_to_rad((time_offset + jitter) * max_shake_angle_deg * red_intensity)
-			dir_normalized = dir_normalized.rotated(shake_angle)
-			local_current = local_start + (dir_normalized * current_distance)
-			var camera = get_viewport().get_camera_2d()
-			if camera and camera.has_method("add_shake"):
-				camera.add_shake(power_ratio)
-		
-		var perpendicular = Vector2(-dir_normalized.y, dir_normalized.x) * (triangle_base_width * power_ratio)
-		
-		var base_left = local_start + perpendicular
-		var base_right = local_start - perpendicular
-		var tip = local_current
-		
-		var triangle_points = PackedVector2Array([base_left, base_right, tip, base_left])
-		var triangle_colors = PackedColorArray([fill_color])
-		
-		draw_polygon(triangle_points, triangle_colors)
-		var outline_color = shape_color
-		outline_color.a = fill_color.a + 0.25
-		draw_polyline(PackedVector2Array([base_left, base_right, tip, base_left]), outline_color, 1.0)
-		
-		var launch_dir = (local_start - local_current).normalized() * current_distance
-		var launch_tip = local_start + (launch_dir/8)
-		
-		var launch_points = PackedVector2Array([base_left + (1.2 * perpendicular), launch_tip, base_right - (1.2 * perpendicular)])
-		draw_polygon(launch_points, PackedColorArray([fill_color]))
-		
 func _process(delta: float) -> void:
 	if is_dragging:
 		if charge_timer < charge_time_sec:
 			charge_timer = min(charge_timer + delta, charge_time_sec)
-		queue_redraw()
+		_redraw_overlay()
 
 #ground and launch arc detection
 var current_surface_normal: Vector2 = Vector2.UP
@@ -178,3 +120,91 @@ func _clamp_launch_vector_to_surface(launch_dir: Vector2, normal: Vector2) -> Ve
 			
 		return tangent.normalized()
 	return launch_dir.normalized()
+
+func _on_collision(info: Dictionary) -> bool:
+	var slime_component = get_node_or_null("SlimeTrailC")
+	if slime_component and slime_component.has_method("handle_collision"):
+		slime_component.handle_collision(info)
+
+	var impact_fx = get_node_or_null("ImpactEffect")
+	if impact_fx and impact_fx.has_method("handle_collision"):
+		impact_fx.handle_collision(info)
+		
+	return true
+
+class ArrowOverlay extends Node2D:
+	var controller: Node
+
+	func _ready() -> void:
+		top_level = true
+		z_index = 100
+		z_as_relative = false
+
+	func _draw() -> void:
+		if not controller or not controller.is_dragging:
+			return
+
+		var inv_transform = get_global_transform_with_canvas().affine_inverse()
+		var local_start = inv_transform * controller.drag_start_pos
+
+		var raw_mouse_distance = (controller.drag_start_pos - controller.current_drag_pos).length()
+		if raw_mouse_distance < 3.0:
+			return
+
+		var constrained_vector = controller._get_constrained_drag_vector()
+		if constrained_vector.length() < 3.0:
+			return
+
+		var power_ratio = controller._get_combined_power_ratio()
+		var visual_length = controller.max_drag_distance * power_ratio
+
+		var launch_dir_normalized = constrained_vector.normalized()
+		var pull_dir_normalized = -launch_dir_normalized
+
+		var local_current = local_start + (pull_dir_normalized * visual_length)
+
+		var allowed_max_dist = controller._get_current_allowed_max_distance()
+		var current_distance = min(raw_mouse_distance, allowed_max_dist)
+
+		var shape_color: Color
+		if power_ratio < 0.5:
+			shape_color = Color.GREEN.lerp(Color.YELLOW, power_ratio * 2.0)
+		else:
+			shape_color = Color.YELLOW.lerp(Color.RED, (power_ratio - 0.5) * 2.0)
+
+		var fill_color = shape_color
+		fill_color.a = lerp(controller.min_alpha, controller.max_alpha, power_ratio)
+
+		var dir_normalized = (local_current - local_start).normalized()
+
+		if power_ratio > 0.5:
+			var red_intensity = (power_ratio - 0.5) * 2.0
+			var time_offset = sin(Time.get_ticks_msec() * 0.05) * 0.5
+			var jitter = randf_range(-0.5, 0.5)
+			var shake_angle = deg_to_rad((time_offset + jitter) * controller.max_shake_angle_deg * red_intensity)
+			dir_normalized = dir_normalized.rotated(shake_angle)
+			local_current = local_start + (dir_normalized * current_distance)
+			var camera = get_viewport().get_camera_2d()
+			if camera and camera.has_method("add_shake"):
+				camera.add_shake(power_ratio)
+
+		var perpendicular = Vector2(-dir_normalized.y, dir_normalized.x) * (controller.triangle_base_width * power_ratio)
+
+		var base_left = local_start + perpendicular
+		var base_right = local_start - perpendicular
+		var tip = local_current
+
+		var triangle_points = PackedVector2Array([base_left, base_right, tip, base_left])
+		var triangle_colors = PackedColorArray([fill_color])
+
+		draw_polygon(triangle_points, triangle_colors)
+		
+		var outline_color = shape_color
+		outline_color.a = fill_color.a + 0.25
+		draw_polyline(PackedVector2Array([base_left, base_right, tip, base_left]), outline_color, 1.0)
+
+		var launch_dir = (local_start - local_current).normalized() * current_distance
+		var launch_tip = local_start + (launch_dir / 8.0)
+
+		var launch_points = PackedVector2Array([base_left + (1.2 * perpendicular), launch_tip, base_right - (1.2 * perpendicular)])
+		draw_polygon(launch_points, PackedColorArray([fill_color]))
