@@ -3,7 +3,6 @@ extends QSoftBodyNode
 @onready var mesh_node: Node = get_node_or_null("QMeshAdvancedNode")
 
 @export var launch_force_multiplier: float = 0.1  # Scales pull distance
-@export var rotation_force_multiplier: float = 0.1 # Adds slight rotation
 @export var triangle_base_width: float = 16 # sets visual indicator base size
 @export var min_alpha: float = 0.50 # Transparency when drag starts
 @export var max_alpha: float = 0.75  # Transparency at maximum pull distance
@@ -28,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_update_surface_normal()
 			is_dragging = true
 			charge_timer = 0.0
-			drag_start_pos = get_global_mouse_position()
+			drag_start_pos = get_viewport().get_mouse_position()
 			current_drag_pos = drag_start_pos
 			queue_redraw()
 		elif is_dragging:
@@ -36,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_launch_softbody()
 			queue_redraw()
 	elif event is InputEventMouseMotion and is_dragging:
-		current_drag_pos = get_global_mouse_position()
+		current_drag_pos = get_viewport().get_mouse_position()
 		queue_redraw()
 
 func _get_constrained_drag_vector() -> Vector2:
@@ -67,13 +66,9 @@ func _launch_softbody() -> void:
 	var launch_direction = drag_vector.normalized()
 	
 	var launch_force = launch_direction * (max_drag_distance * launch_force_multiplier * power_ratio)
-	var rotation_torque = drag_vector.x * rotation_force_multiplier * power_ratio
 	
 	if has_method("apply_force"):
 		call("apply_force", launch_force)
-
-	if has_method("rotate"):
-		call("rotate", rotation_torque)
 
 func _get_current_allowed_max_distance() -> float:
 	var charge_ratio = charge_timer / charge_time_sec
@@ -81,10 +76,12 @@ func _get_current_allowed_max_distance() -> float:
 
 func _draw() -> void:
 	if is_dragging:
-		var local_start = to_local(drag_start_pos)
+		var screen_to_local = get_global_transform_with_canvas().affine_inverse()
+		var local_start = screen_to_local * drag_start_pos
+		
 		var raw_mouse_distance = (drag_start_pos - current_drag_pos).length()
 		if raw_mouse_distance < 3.0:
-			return #avoid divide by small floats
+			return # avoid divide by small floatss
 		
 		var constrained_vector = _get_constrained_drag_vector()
 		if constrained_vector.length() < 3.0:
@@ -100,7 +97,7 @@ func _draw() -> void:
 		
 		var allowed_max_dist = _get_current_allowed_max_distance()
 		var current_distance = min(raw_mouse_distance, allowed_max_dist)
-		
+		#Drawing the arrow and color blending
 		var shape_color: Color
 		if power_ratio < 0.5:
 			shape_color = Color.GREEN.lerp(Color.YELLOW, power_ratio * 2.0)
@@ -120,6 +117,9 @@ func _draw() -> void:
 			var shake_angle = deg_to_rad((time_offset + jitter) * max_shake_angle_deg * red_intensity)
 			dir_normalized = dir_normalized.rotated(shake_angle)
 			local_current = local_start + (dir_normalized * current_distance)
+			var camera = get_viewport().get_camera_2d()
+			if camera and camera.has_method("add_shake"):
+				camera.add_shake(power_ratio)
 		
 		var perpendicular = Vector2(-dir_normalized.y, dir_normalized.x) * (triangle_base_width * power_ratio)
 		
@@ -154,10 +154,11 @@ var is_grounded: bool = false
 func _update_surface_normal() -> void:
 	var space_state = get_world_2d().direct_space_state
 	
+	var ray_origin: Vector2 = get_aabb().get_center() if has_method("get_aabb") else global_position
 	var ray_length: float = 30.0
 	var query = PhysicsRayQueryParameters2D.create(
-		global_position,
-		global_position + Vector2.DOWN * ray_length
+		ray_origin,
+		ray_origin + Vector2.DOWN * ray_length
 	)
 	var result = space_state.intersect_ray(query)
 	

@@ -14,10 +14,10 @@ particle_spesific_mass = true
 friction = 0.9
 static_friction = 0.9
 script = ExtResource("1_s0eop")
-rotation_force_multiplier = 100.0
 triangle_base_width = 6.0
 min_alpha = 0.55
 max_alpha = 0.25
+charge_time_sec = 1.5
 
 [node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="." unique_id=277802962]
 enable_vector_rendering = true
