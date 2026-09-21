@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cvrffhvhon14y" path="res://Scenes/Character/Sign.tscn" id="8_pu0n7"]
 [ext_resource type="Texture2D" uid="uid://b277nbj8opsyb" path="res://Assets/log_back.png" id="9_42i6i"]
 [ext_resource type="Texture2D" uid="uid://bbmhajceyupck" path="res://Assets/log_front.png" id="10_45tr4"]
+[ext_resource type="PackedScene" uid="uid://cct1fmx6dwnat" path="res://Scenes/hitbox.tscn" id="11_bvbs8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceigu"]
 texture = ExtResource("1_r4qur")
@@ -177,7 +178,7 @@ rigidity = 0.4
 self_collision = false
 shape_matching_rate = 0.8
 z_as_relative = false
-position = Vector2(3665, -230)
+position = Vector2(4125, -769)
 
 [node name="Camera" parent="PhysicsWorld/Player" unique_id=1925062317 node_paths=PackedStringArray("target_player") instance=ExtResource("3_n8yra")]
 target_player = NodePath("..")
@@ -234,4 +235,19 @@ scale = Vector2(0.26899993, -0.26899993)
 z_index = 1
 texture = ExtResource("10_45tr4")
 
+[node name="RigidBody" parent="Objects/Log/Front" unique_id=1478025017 instance=ExtResource("11_bvbs8")]
+fixed_rotation = true
+position = Vector2(10.10627, -66.98124)
+
+[node name="Mesh" parent="Objects/Log/Front/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-608.1962, -4.7300415, 217.32333, 224.05263, 308.0338, 133.19225, 373.90936, 100.368286, 424.80508, 121.59621, 510.75168, 210.9449, 539.3619, 322.86655, 561.30817, 314.90662, 536.6825, 212.84009, 459.4585, 68.51944, 408.61774, 33.87523, 308.11475, 4.3939743, 141.8187, -12.387764, 119.5499, -34.839947, -398.25836, -160.84248, -455.97226, -155.2653, -495.88028, -129.49034, -526.23737, -142.58414, -614.316, -39.190872)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0, 1, 2, 3, 4, 5)
+rotation = -6.2831855
+scale = Vector2(0.269, 0.269)
+
 [editable path="NPC\'s/Turbo"]
+[editable path="Objects/Log/Front/RigidBody"]

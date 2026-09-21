@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cct1fmx6dwnat"]
+
+[node name="RigidBody" type="QRigidBodyNode" unique_id=1478025017]
+mode = 1
+
+[node name="Mesh" type="QMeshAdvancedNode" parent="." unique_id=594603432]

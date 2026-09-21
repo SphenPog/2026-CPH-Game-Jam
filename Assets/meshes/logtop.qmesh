@@ -1,0 +1,228 @@
+{
+	"meshes": [
+		{
+			"internal_springs": [],
+			"name": "QMeshData",
+			"particles": [
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-608.196228027344,
+						-4.73004150390625
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						217.323333740234,
+						224.052627563477
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						308.033813476562,
+						133.192245483398
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						373.909362792969,
+						100.368286132812
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						424.805084228516,
+						121.596206665039
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						510.751678466797,
+						210.944900512695
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						539.361877441406,
+						322.866546630859
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						561.308166503906,
+						314.906616210938
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						536.682495117188,
+						212.840087890625
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						459.45849609375,
+						68.5194396972656
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						408.617736816406,
+						33.8752288818359
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						308.11474609375,
+						4.39397430419922
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						141.818695068359,
+						-12.3877639770508
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						119.549896240234,
+						-34.8399467468262
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-398.258361816406,
+						-160.842483520508
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-455.972259521484,
+						-155.26530456543
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-495.880279541016,
+						-129.490341186523
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-526.237365722656,
+						-142.584136962891
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-614.315979003906,
+						-39.1908721923828
+					],
+					"radius": 0.5
+				}
+			],
+			"polygon": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			],
+			"position": [
+				0.0,
+				0.0
+			],
+			"rotation": 0.0,
+			"springs": [],
+			"uv_maps": []
+		}
+	]
+}

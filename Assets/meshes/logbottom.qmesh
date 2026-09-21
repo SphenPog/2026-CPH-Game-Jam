@@ -1,0 +1,129 @@
+{
+	"meshes": [
+		{
+			"internal_springs": [],
+			"name": "QMeshData",
+			"particles": [
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						518.4013671875,
+						-417.590637207031
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-608.289428710938,
+						91.0435943603516
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-632.066711425781,
+						72.8051605224609
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-613.395751953125,
+						45.4483489990234
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-591.687866210938,
+						-4.72900390625
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						-517.75,
+						-77.9286346435547
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						339.123199462891,
+						-513.007202148438
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						422.8779296875,
+						-482.49267578125
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						446.581909179688,
+						-482.142639160156
+					],
+					"radius": 0.5
+				},
+				{
+					"enabled": true,
+					"is_internal": false,
+					"lazy": false,
+					"position": [
+						486.048248291016,
+						-455.024200439453
+					],
+					"radius": 0.5
+				}
+			],
+			"polygon": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9
+			],
+			"position": [
+				0.0,
+				0.0
+			],
+			"rotation": 0.0,
+			"springs": [],
+			"uv_maps": []
+		}
+	]
+}
