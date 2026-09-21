@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dey5utc8j4cpo"
-path="res://.godot/imported/green Tileset.jpg-8447f2dfaf3e4f8cd3cb848c79212fd2.ctex"
+uid="uid://oby3iiqucato"
+path="res://.godot/imported/youngster-headshot.png-1080de85364c9d4e79bded0c86da7704.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/green Tileset.jpg"
-dest_files=["res://.godot/imported/green Tileset.jpg-8447f2dfaf3e4f8cd3cb848c79212fd2.ctex"]
+source_file="res://Assets/NPCs/youngster-headshot.png"
+dest_files=["res://.godot/imported/youngster-headshot.png-1080de85364c9d4e79bded0c86da7704.ctex"]
 
 [params]
 

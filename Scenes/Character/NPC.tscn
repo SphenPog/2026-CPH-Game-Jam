@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csm42lkak0rhj"]
 
 [ext_resource type="Script" uid="uid://c4laes8oulswg" path="res://Scenes/Character/Scripts/NPC.gd" id="1_qimrl"]
-[ext_resource type="Texture2D" uid="uid://ds5ih0es2dpq" path="res://Assets/snail.webp" id="2_n1h7h"]
+[ext_resource type="Texture2D" uid="uid://ds5ih0es2dpq" path="res://Assets/NPCs/snail.webp" id="2_n1h7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1h7h"]
 size = Vector2(147, 56)

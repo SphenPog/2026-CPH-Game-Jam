@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y0h7t6f4ryi7"
-path="res://.godot/imported/snail_headshot.webp-6eb010d111c0616f965db0083018e89d.ctex"
+uid="uid://dskuni285cdv7"
+path="res://.godot/imported/car.png-19c4c6c82c0846e7078b23aebb9fd3f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/snail_headshot.webp"
-dest_files=["res://.godot/imported/snail_headshot.webp-6eb010d111c0616f965db0083018e89d.ctex"]
+source_file="res://Assets/car.png"
+dest_files=["res://.godot/imported/car.png-19c4c6c82c0846e7078b23aebb9fd3f5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds5ih0es2dpq"
-path="res://.godot/imported/snail.webp-aa7e073a145c32e70ab5d016ea4c9e96.ctex"
+uid="uid://clj52r4afudaq"
+path="res://.godot/imported/woods.png-8ba2c9f74e8574cff1bdd815b85b5866.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/snail.webp"
-dest_files=["res://.godot/imported/snail.webp-aa7e073a145c32e70ab5d016ea4c9e96.ctex"]
+source_file="res://Assets/woods.png"
+dest_files=["res://.godot/imported/woods.png-8ba2c9f74e8574cff1bdd815b85b5866.ctex"]
 
 [params]
 

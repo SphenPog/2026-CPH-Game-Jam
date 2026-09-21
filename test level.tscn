@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7dkpfdqsxjvn" path="res://Scenes/Camera/camera.tscn" id="2_r5kg7"]
 [ext_resource type="PackedScene" uid="uid://cvrffhvhon14y" path="res://Scenes/Character/Sign.tscn" id="4_27h24"]
 [ext_resource type="PackedScene" uid="uid://csm42lkak0rhj" path="res://Scenes/Character/NPC.tscn" id="5_w61ww"]
-[ext_resource type="Texture2D" uid="uid://y0h7t6f4ryi7" path="res://Assets/snail_headshot.webp" id="6_qurlj"]
+[ext_resource type="Texture2D" uid="uid://y0h7t6f4ryi7" path="res://Assets/NPCs/snail_headshot.webp" id="6_qurlj"]
 
 [node name="Node2D" type="Node2D" unique_id=86669901]
 
