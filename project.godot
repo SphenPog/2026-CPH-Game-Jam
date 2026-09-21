@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SlugFest"
-run/main_scene="uid://bunys3khcyms8"
+run/main_scene="uid://ct6o3xcbdbxo3"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
