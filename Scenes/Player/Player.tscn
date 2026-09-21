@@ -19,7 +19,6 @@ use_custom_gravity = true
 custom_gravity = Vector2(0, 0.15)
 friction = 0.9
 static_friction = 0.9
-z_index = -1
 script = ExtResource("1_s0eop")
 triangle_base_width = 6.0
 min_alpha = 0.55

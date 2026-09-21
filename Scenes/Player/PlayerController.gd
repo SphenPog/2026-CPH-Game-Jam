@@ -12,8 +12,6 @@ extends QSoftBodyNode
 @export var max_drag_distance: float = 180.0   # drag cap after 3 seconds of holding
 @export var charge_time_sec: float = 3.0
 
-@export var softbody_texture: Texture2D
-
 var is_dragging: bool = false
 var drag_start_pos: Vector2 = Vector2.ZERO
 var current_drag_pos: Vector2 = Vector2.ZERO
