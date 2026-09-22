@@ -2,13 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c1k5be8gbdie1" path="res://Scenes/Player/PlayerController.gd" id="1_s0eop"]
 [ext_resource type="Script" uid="uid://cypmijp0lo67f" path="res://Scenes/Particle Effects/slime_trail.gd" id="2_h54ih"]
+[ext_resource type="AudioStream" uid="uid://bfyblt8djk1j0" path="res://Assets/Music/SFX/charging.mp3" id="2_t26db"]
+[ext_resource type="AudioStream" uid="uid://5rxor5wtw842" path="res://Assets/Music/SFX/jump.mp3" id="3_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://b6707370lrljg" path="res://Scenes/Particle Effects/ImpactParticle.tscn" id="3_jmcll"]
 [ext_resource type="Script" uid="uid://oc0s3w63jw66" path="res://Scenes/Particle Effects/impact_effect.gd" id="3_ude3g"]
+[ext_resource type="AudioStream" uid="uid://cvvd6y2dqai0r" path="res://Assets/Music/SFX/dialogue interact.mp3" id="4_825xp"]
+[ext_resource type="AudioStream" uid="uid://bvarlogtlvesb" path="res://Assets/Music/SFX/landing.mp3" id="7_fk5o5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brx3m"]
 size = Vector2(347, 139)
 
-[node name="Player" type="QSoftBodyNode" unique_id=560389358]
+[node name="Player" type="QSoftBodyNode" unique_id=560389358 groups=["player"]]
 rigidity = 0.2
 self_collision = true
 area_preserving_rate = 0.5
@@ -25,6 +29,9 @@ triangle_base_width = 6.0
 min_alpha = 0.55
 max_alpha = 0.25
 charge_time_sec = 1.5
+charge_sfx = ExtResource("2_t26db")
+launch_sfx = ExtResource("3_fk5o5")
+dialogue_sfx = ExtResource("4_825xp")
 
 [node name="QMeshAdvancedNode" type="QMeshAdvancedNode" parent="." unique_id=277802962]
 show_springs = false
@@ -45,12 +52,13 @@ position = Vector2(3, 0)
 [node name="ImpactEffect" type="Node" parent="." unique_id=1600435530]
 script = ExtResource("3_ude3g")
 impact_particle_scene = ExtResource("3_jmcll")
+impact_sfx = ExtResource("7_fk5o5")
 
 [node name="SlimeTrail" type="Node" parent="." unique_id=1483221507]
 script = ExtResource("2_h54ih")
 
 [node name="InteractionDetector" type="Area2D" parent="." unique_id=1151426344]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector" unique_id=766876130]

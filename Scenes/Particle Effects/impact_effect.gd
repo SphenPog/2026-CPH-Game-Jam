@@ -3,6 +3,7 @@ extends Node
 @export var impact_particle_scene: PackedScene
 @export var min_impact_speed: float = 120.0 
 @export var cooldown_msec: int = 400
+@export var impact_sfx: AudioStream
 
 var _last_spawn_time: int = 0
 var _prev_pos: Vector2 = Vector2.ZERO
@@ -44,7 +45,7 @@ func handle_collision(info: Dictionary) -> void:
 		return
 
 	_last_spawn_time = current_time
-	_spawn_effect(spawn_pos, contact_normal)
+	_spawn_effect(spawn_pos, contact_normal, impact_speed)
 
 func _get_player_center() -> Vector2:
 	if parent_softbody and parent_softbody.has_method("get_aabb"):
@@ -61,8 +62,13 @@ func _get_player_bottom_center() -> Vector2:
 		return parent_softbody.global_position
 	return Vector2.ZERO
 
-func _spawn_effect(pos: Vector2, normal: Vector2) -> void:
+func _spawn_effect(pos: Vector2, normal: Vector2, speed: float = 0.0) -> void:
 	var effect = impact_particle_scene.instantiate() as Node2D
 	get_tree().root.add_child(effect)
 	effect.global_position = pos
 	effect.rotation = normal.angle() + PI / 2.0
+	
+	#sound effect
+	if impact_sfx:
+		var pitch_factor: float = clamp(1.0 + ((speed - min_impact_speed) / 500.0), 0.8, 1.4)
+		AudioManager.play_sfx_at_position(impact_sfx, pos, pitch_factor)

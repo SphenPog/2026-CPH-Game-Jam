@@ -13,6 +13,10 @@ extends Interactible
 
 @export var line_camera_shots: Dictionary[int, NodePath] = {}
 
+@export_group("Voice Settings")
+@export var voice_sfx: AudioStream
+@export var voice_pitch: float = 1.0
+
 var interaction_count: int = 0
 
 func _on_interact(_interactor: Node2D) -> void:

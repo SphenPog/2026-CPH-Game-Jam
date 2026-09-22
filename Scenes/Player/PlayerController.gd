@@ -21,6 +21,12 @@ var _overlay: ArrowOverlay
 var _nearby_interactables: Array[Interactible] = []
 @onready var interaction_detector: Area2D = $InteractionDetector
 
+#audio
+var _charge_sfx_player: AudioStreamPlayer
+@export var charge_sfx: AudioStream
+@export var launch_sfx: AudioStream
+@export var dialogue_sfx: AudioStream
+
 func _ready() -> void:
 	_overlay = ArrowOverlay.new()
 	_overlay.controller = self
@@ -29,6 +35,15 @@ func _ready() -> void:
 	# initiate interaction settings
 	if DialogueUI:
 		DialogueUI.dialogue_finished.connect(_on_dialogue_finished)
+		
+		DialogueUI.dialogue_started.connect(func(): 
+			if is_instance_valid(_charge_sfx_player):
+				_charge_sfx_player.stop()
+				_charge_sfx_player.queue_free()
+				_charge_sfx_player = null
+			is_dragging = false
+			set_process_unhandled_input(false)
+		)
 	
 	if interaction_detector:
 		interaction_detector.top_level = true
@@ -36,7 +51,6 @@ func _ready() -> void:
 		interaction_detector.area_entered.connect(_on_interaction_area_entered)
 		interaction_detector.area_exited.connect(_on_interaction_area_exited)
 	
-	DialogueUI.dialogue_started.connect(func(): is_dragging = false; set_process_unhandled_input(false))
 	DialogueUI.dialogue_finished.connect(func(): set_process_unhandled_input(true))
 
 ## input from player
@@ -56,9 +70,20 @@ func _unhandled_input(event: InputEvent) -> void:
 			charge_timer = 0.0
 			drag_start_pos = get_viewport().get_mouse_position()
 			current_drag_pos = drag_start_pos
+			
+			if charge_sfx:
+				_charge_sfx_player = AudioManager.play_sfx(charge_sfx)
+			
 			_redraw_overlay()
 		elif is_dragging:
 			is_dragging = false
+			
+			#stop charge SFX
+			if is_instance_valid(_charge_sfx_player):
+				_charge_sfx_player.stop()
+				_charge_sfx_player.queue_free()
+				_charge_sfx_player = null
+			
 			_launch_softbody()
 			_redraw_overlay()
 	elif event is InputEventMouseMotion and is_dragging:
@@ -102,6 +127,9 @@ func _launch_softbody() -> void:
 	
 	if has_method("apply_force"):
 		call("apply_force", launch_force)
+	
+	if launch_sfx:
+			AudioManager.play_sfx(launch_sfx, 1.0 + (power_ratio * 0.3))
 
 func _get_current_allowed_max_distance() -> float:
 	var charge_ratio = charge_timer / charge_time_sec
@@ -179,6 +207,9 @@ func _try_interact() -> void:
 	if not _nearby_interactables.is_empty():
 		var target = _nearby_interactables[0]
 		target.interact(self)
+		
+		if dialogue_sfx:
+			AudioManager.play_sfx(dialogue_sfx)
 
 func _on_interaction_area_entered(area: Area2D) -> void:
 	if area is Interactible and area.is_interactable:

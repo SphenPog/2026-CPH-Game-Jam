@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 DialogueUI="*uid://bncdnjmg3r0wd"
+LocationUI="*uid://br3v5m6q3ghiv"
+AudioManager="*uid://c1ackebolrtg"
 
 [display]
 

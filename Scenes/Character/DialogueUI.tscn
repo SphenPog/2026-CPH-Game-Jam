@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://bncdnjmg3r0wd"]
 
 [ext_resource type="Script" uid="uid://uig4ymcndowr" path="res://Scenes/Character/Scripts/Dialogue_UI.gd" id="1_n1eht"]
+[ext_resource type="AudioStream" uid="uid://cvvd6y2dqai0r" path="res://Assets/Music/SFX/dialogue interact.mp3" id="2_6sy11"]
 
 [node name="DialogueUi" type="CanvasLayer" unique_id=887406122]
 script = ExtResource("1_n1eht")
+next_line_sfx = ExtResource("2_6sy11")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=284374885]
 anchors_preset = 12

@@ -10,6 +10,13 @@ signal dialogue_finished
 @onready var portrait_texture: TextureRect = %PortraitTexture
 
 @export var seconds_per_character: float = 0.03
+@export var next_line_sfx: AudioStream
+@export var default_typing_sfx: AudioStream
+@export var blip_frequency: int = 2
+@export var pitch_variation: float = 0.1
+
+var current_voice_sfx: AudioStream
+var current_voice_pitch: float = 1.0
 
 var current_lines: Array[String] = []
 var current_line_index: int = 0
@@ -19,6 +26,8 @@ var _tween: Tween
 
 var _camera_shots: Dictionary = {}
 var _current_npc: Node2D = null
+var _last_char_count: int = 0
+var _character_counter: int = 0
 
 func _ready() -> void:
 	panel.hide()
@@ -34,14 +43,28 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		
 		if is_typing:
+			if next_line_sfx:
+				AudioManager.play_sfx(next_line_sfx, 1.0, 0.05)
 			_skip_typing()
 		else:
+			if next_line_sfx:
+				AudioManager.play_sfx(next_line_sfx, 1.0, 0.05)
 			_advance_line()
 
 func show_dialogue(speaker_name: String, lines: Array[String], portrait: Texture2D = null, npc: Node2D = null, camera_shots: Dictionary = {}) -> void:
 	if lines.is_empty():
 		return
-
+	
+	if npc and "voice_sfx" in npc and npc.voice_sfx != null:
+		current_voice_sfx = npc.voice_sfx
+	else:
+		current_voice_sfx = default_typing_sfx
+	
+	if npc and "voice_pitch" in npc:
+		current_voice_pitch = npc.voice_pitch
+	else:
+		current_voice_pitch = 1.0
+	
 	current_lines = lines
 	current_line_index = 0
 	is_active = true
@@ -74,15 +97,39 @@ func _display_current_line() -> void:
 	text_label.visible_ratio = 0.0
 	indicator.hide()
 	is_typing = true
-
-	var duration = line_text.length() * seconds_per_character
+	
+	_last_char_count = 0
+	_character_counter = 0
+	
+	var total_chars = line_text.length()
+	var duration = total_chars * seconds_per_character
 
 	if _tween and _tween.is_running():
 		_tween.kill()
 
 	_tween = create_tween()
-	_tween.tween_property(text_label, "visible_ratio", 1.0, duration)
+	_tween.tween_method(_on_typewriter_step.bind(line_text), 0, total_chars, duration)
 	_tween.finished.connect(_on_typing_finished)
+
+func _on_typewriter_step(char_count: int, line_text: String) -> void:
+	text_label.visible_characters = char_count
+	
+	if char_count > _last_char_count:
+		for i in range(_last_char_count, char_count):
+			if i < line_text.length():
+				_play_typewriter_blip(line_text[i])
+		_last_char_count = char_count
+
+func _play_typewriter_blip(current_char: String) -> void:
+	if current_char == " " or current_char == "\n" or current_char == "\t":
+		return
+
+	_character_counter += 1
+	if _character_counter % blip_frequency != 0:
+		return
+
+	if current_voice_sfx:
+		AudioManager.play_sfx(current_voice_sfx, current_voice_pitch, pitch_variation)
 
 func _update_camera_focus() -> void:
 	var camera = get_tree().get_first_node_in_group("main_camera")
