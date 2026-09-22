@@ -42,6 +42,9 @@ func _ready() -> void:
 ## input from player
 func _unhandled_input(event: InputEvent) -> void:
 	# interaction key
+	if DialogueUI.is_active:
+		return
+
 	if event.is_action_pressed("interact"):
 		_try_interact()
 	

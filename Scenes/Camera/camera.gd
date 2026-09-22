@@ -21,14 +21,27 @@ var shake_intensity: float = 0.0
 var impact_offset: Vector2 = Vector2.ZERO
 var impact_velocity: Vector2 = Vector2.ZERO
 
+var focus_target: Node2D = null
+
 func _ready() -> void:
 	make_current()
 	top_level = true
+	add_to_group("main_camera")
 	
 	if not target_player and get_parent() is Node2D and get_parent() != get_tree().root:
 		target_player = get_parent() as Node2D
 
+func set_focus_target(target: Node2D) -> void:
+	focus_target = target
+
+func clear_focus_target() -> void:
+	focus_target = null
+
 func _physics_process(delta: float) -> void:
+	if is_instance_valid(focus_target) and focus_target is Node2D:
+		global_position = global_position.lerp(focus_target.global_position, follow_speed * delta)
+		return
+	
 	if not is_instance_valid(target_player):
 		return
 	

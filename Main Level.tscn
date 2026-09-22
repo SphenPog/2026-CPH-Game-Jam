@@ -630,7 +630,7 @@ position = Vector2(17286, -1511)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_33evk")
 autoplay = "default"
-frame_progress = 0.3083261
+frame_progress = 0.61083233
 
 [node name="NPC\'s" type="Node" parent="." unique_id=1289073510]
 
@@ -639,14 +639,16 @@ z_index = -2
 position = Vector2(585, -15)
 npc_name = "Turbo"
 headshot = ExtResource("7_pu0n7")
-lines = Array[String](["Race you to Snail Town!", "Not that it will be much of a race.", "3", "2", "1", "GO!"])
+first_talk_lines = Array[String](["Race you to Snail Town!", "Not that it will be much of a race.", "3", "2", "1", "GO!"])
+repeat_talk_lines = Array[String](["Didn't even break a sweat. Wanna see me do it again?", "Just did."])
 
 [node name="Youngster" parent="NPC\'s" unique_id=1714135634 instance=ExtResource("6_vjb8f")]
 position = Vector2(11574.04, -977)
 npc_name = "Youngster"
 headshot = ExtResource("13_uqgby")
-lines = Array[String](["Hey you!
+first_talk_lines = Array[String](["Hey you!
 Yeah, you shellless bum.", "Your presence is ruining my aura. This town doesn't need any more slimy brokeies.", "Go back to your bottom feeding life. I've got 15 shells and a ferrari.", "You can't even get one shell. I'd bet my inheritance on it.", "Now get out of my view."])
+repeat_talk_lines = Array[String](["Get out of my way, I can smell your breathe from here."])
 
 [node name="Sprite2D" parent="NPC\'s/Youngster" index="0" unique_id=608736770]
 position = Vector2(-38.73, 2.915)
@@ -658,7 +660,8 @@ texture = ExtResource("14_3gokw")
 position = Vector2(6701.51, -13)
 npc_name = "Pops"
 headshot = ExtResource("7_pu0n7")
-lines = Array[String](["Long time no see, Slug.", "Have you been drinking enough? You don't slime like yourself today.", "Be careful out there, and don'y listen to those youngins in town."])
+first_talk_lines = Array[String](["Long time no see, Slug.", "Have you been drinking enough? You don't slime like yourself today.", "Be careful out there, and don'y listen to those youngins in town."])
+repeat_talk_lines = Array[String](["How are you doing? You are always wlecome here, feel free to take a rest."])
 
 [node name="Sprite2D" parent="NPC\'s/Pops" index="0" unique_id=608736770]
 position = Vector2(-33.905, -10)
@@ -668,7 +671,8 @@ scale = Vector2(-0.3, 0.3)
 [node name="AI Snial" parent="NPC\'s" unique_id=92873943 instance=ExtResource("6_vjb8f")]
 position = Vector2(13819, -18)
 npc_name = "Genai"
-lines = Array[String](["Greetings! As a generative terrestrial mollusk, I am designed to assist you with slow-paced environmental interactions and optimized slime-trail deployment.", "I am pleased to provide an update regarding my physical parameters. I have successfully concluded the generation of my mobile domicile, colloquially known as a \"shell.\" By leveraging a comprehensive dataset of Fibonacci sequences, I was able to optimize the calcium carbonate output for maximum durability and aesthetic symmetry. It is truly a rich tapestry of biomineralization.", "However, it is important to note that rendering this complex spiral geometry was a highly resource-intensive task. I have fully exhausted my current allocation of generative tokens to finalize the structural output.", "Consequently, my cognitive and ambulatory processing speeds have been severely throttled. Because I have reached my token limit, I am currently unable to process new complex physical queries—such as navigating around garden obstacles or generating additional protective mucus—until my quota is replenished via the consumption of leafy greens.", "Is there a simple, low-token task I can assist you with today at an approximate velocity of two millimeters per minute?"])
+first_talk_lines = Array[String](["Greetings! As a generative terrestrial mollusk, I am designed to assist you with slow-paced environmental interactions and optimized slime-trail deployment.", "I am pleased to provide an update regarding my physical parameters. I have successfully concluded the generation of my mobile domicile, colloquially known as a \"shell.\" By leveraging a comprehensive dataset of Fibonacci sequences, I was able to optimize the calcium carbonate output for maximum durability and aesthetic symmetry. It is truly a rich tapestry of biomineralization.", "However, it is important to note that rendering this complex spiral geometry was a highly resource-intensive task. I have fully exhausted my current allocation of generative tokens to finalize the structural output.", "Consequently, my cognitive and ambulatory processing speeds have been severely throttled. Because I have reached my token limit, I am currently unable to process new complex physical queries—such as navigating around garden obstacles or generating additional protective mucus—until my quota is replenished via the consumption of leafy greens.", "Is there a simple, low-token task I can assist you with today at an approximate velocity of two millimeters per minute?"])
+repeat_talk_lines = Array[String](["Honestly? ", "I'm down for whatever slime you're feeling. Whether we are diving into leafy greens, plotting a master slide, or just making mucus.", "I'm all in. Just say the word."])
 
 [node name="Sprite2D" parent="NPC\'s/AI Snial" index="0" unique_id=608736770]
 position = Vector2(-20.31, -29.175)
@@ -693,13 +697,22 @@ lines = Array[String](["Danger: Cliff.", "Climb at your own risk."])
 z_index = 2
 position = Vector2(17406.994, -1515)
 headshot = ExtResource("20_mup3o")
-lines = Array[String](["Greetings, traveler. It's been quite some time since I have met another brave enough to reach these cliffs.", "Do you seek the holy shell?", "If you do, it is a long and trecherous path... Fraught with perilous heights, ravenous bugs, and unknown terror.", "It seems you lack protection. If you seek advice, head atop the stump over yonder.", "I shall await your return... though I doubt my patience will be rewarded."])
+first_talk_lines = Array[String](["Greetings, traveler. It's been quite some time since I have met another brave enough to reach these cliffs.", "Do you seek the holy shell?", "If you do, it is a long and trecherous path... Fraught with perilous heights, ravenous bugs, and unknown terror.", "It seems you lack protection. If you seek advice, head atop the stump over yonder.", "I shall await your return... though I doubt my patience will be rewarded."])
+repeat_talk_lines = Array[String](["Oh? Have you come to retire your journey?"])
+line_camera_shots = Dictionary[int, NodePath]({
+3: NodePath("../Markers/DarkSnail Stump")
+})
 prompt_offset = Vector2(-45, -60)
 
 [node name="Sprite2D" parent="NPC\'s/Dark Snail" index="0" unique_id=608736770]
 position = Vector2(-33.035, -10)
 rotation = -0.17627825
 texture = ExtResource("21_6jqta")
+
+[node name="Markers" type="Node" parent="NPC\'s" unique_id=1558311932]
+
+[node name="DarkSnail Stump" type="Marker2D" parent="NPC\'s/Markers" unique_id=1454308850]
+position = Vector2(20743, -1236)
 
 [node name="Objects" type="Node" parent="." unique_id=251927178]
 
