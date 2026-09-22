@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1k5be8gbdie1" path="res://Scenes/Player/PlayerController.gd" id="1_s0eop"]
 [ext_resource type="Script" uid="uid://cypmijp0lo67f" path="res://Scenes/Particle Effects/slime_trail.gd" id="2_h54ih"]
+[ext_resource type="PackedScene" uid="uid://b6707370lrljg" path="res://Scenes/Particle Effects/ImpactParticle.tscn" id="3_jmcll"]
 [ext_resource type="Script" uid="uid://oc0s3w63jw66" path="res://Scenes/Particle Effects/impact_effect.gd" id="3_ude3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brx3m"]
@@ -43,6 +44,7 @@ position = Vector2(3, 0)
 
 [node name="ImpactEffect" type="Node" parent="." unique_id=1600435530]
 script = ExtResource("3_ude3g")
+impact_particle_scene = ExtResource("3_jmcll")
 
 [node name="SlimeTrail" type="Node" parent="." unique_id=1483221507]
 script = ExtResource("2_h54ih")
