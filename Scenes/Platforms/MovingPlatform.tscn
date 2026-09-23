@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://vkfx0xc2vkeg"]
+
+[ext_resource type="Script" uid="uid://ckyb666ok8g5" path="res://Scenes/Platforms/Scripts/MovingPlatform.gd" id="1_3nhrq"]
+[ext_resource type="Texture2D" uid="uid://sfh25s6d3u2s" path="res://Assets/bugPlatform.png" id="2_inyio"]
+
+[node name="MovingPlatform" type="QRigidBodyNode" unique_id=509841853]
+friction = 50.0
+static_friction = 50.0
+script = ExtResource("1_3nhrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1720066039]
+rotation = -0.26703537
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_inyio")
+
+[node name="QMeshRectNode" type="QMeshRectNode" parent="." unique_id=2045198085]
+rectangle_size = Vector2(249.4, 41.775)
+center_position = Vector2(-35.48, 21.28)
+data_particle_positions = PackedVector2Array(-160.18, 0.39249992, 89.22, 0.39249992, 89.22, 42.167503, -160.18, 42.167503)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0)
+data_particle_is_enabled = PackedByteArray(1, 1, 1, 1)
+data_particle_is_lazy = PackedByteArray(0, 0, 0, 0)
+data_springs = Array[PackedInt32Array]([PackedInt32Array(0, 1), PackedInt32Array(1, 2), PackedInt32Array(2, 3), PackedInt32Array(3, 0)])
+data_internal_springs = Array[PackedInt32Array]([PackedInt32Array(0, 2), PackedInt32Array(1, 3)])
+data_polygon = PackedInt32Array(0, 1, 2, 3)
+data_uv_maps = Array[PackedInt32Array]([PackedInt32Array(0, 1, 3), PackedInt32Array(1, 2, 3)])
