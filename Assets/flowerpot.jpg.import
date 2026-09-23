@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do38uidmjb4uc"
-valid=false
+uid="uid://cuykb5wcm1m4r"
+path="res://.godot/imported/flowerpot.jpg-fa882b844658ea8353fe5a7dcc157134.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/flowerpot.png"
+source_file="res://Assets/flowerpot.jpg"
+dest_files=["res://.godot/imported/flowerpot.jpg-fa882b844658ea8353fe5a7dcc157134.ctex"]
 
 [params]
 

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cyrfbj6oo7v73"]
+
+[ext_resource type="Script" uid="uid://banavgmtsc8bk" path="res://Scenes/Character/Scripts/WearableInteractible.gd" id="1_5ncpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brx3m"]
+size = Vector2(164, 90)
+
+[node name="WearableInteractible" type="Area2D" unique_id=1296151236]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_5ncpj")
+speaker_name = "Small shell"
+dialogue_lines = Array[String](["You found the \"protection\" Molloc referred to.", "Would you like to put it on?"])
+prompt_offset = Vector2(-45, -100)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2097436221]
+scale = Vector2(0.4, 0.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2043115412]
+shape = SubResource("RectangleShape2D_brx3m")

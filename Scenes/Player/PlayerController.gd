@@ -12,12 +12,14 @@ extends QSoftBodyNode
 @export var max_drag_distance: float = 180.0   # drag cap after 3 seconds of holding
 @export var charge_time_sec: float = 3.0
 
+#input
 var is_dragging: bool = false
 var drag_start_pos: Vector2 = Vector2.ZERO
 var current_drag_pos: Vector2 = Vector2.ZERO
 var charge_timer: float = 0.0
-
 var _overlay: ArrowOverlay
+
+#interaction
 var _nearby_interactables: Array[Interactible] = []
 @onready var interaction_detector: Area2D = $InteractionDetector
 
@@ -195,7 +197,7 @@ func _on_collision(info: Dictionary) -> bool:
 	var impact_fx = get_node_or_null("ImpactEffect")
 	if impact_fx and impact_fx.has_method("handle_collision"):
 		impact_fx.handle_collision(info)
-		
+	
 	return true
 
 ##

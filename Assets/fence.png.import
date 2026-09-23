@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpq6l66wcukqj"
-path="res://.godot/imported/stump large.jpg-7ee82698b0d680663e348091f410d57f.ctex"
+uid="uid://c4vq5o0o5q1i4"
+path="res://.godot/imported/fence.png-04907a59e1c4c8f88ea0abb8bac68e95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/stump large.jpg"
-dest_files=["res://.godot/imported/stump large.jpg-7ee82698b0d680663e348091f410d57f.ctex"]
+source_file="res://Assets/fence.png"
+dest_files=["res://.godot/imported/fence.png-04907a59e1c4c8f88ea0abb8bac68e95.ctex"]
 
 [params]
 
