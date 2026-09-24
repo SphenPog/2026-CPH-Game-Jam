@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7rc2nvq3j5tc" path="res://Scenes/Player/Player.tscn" id="2_n8yra"]
 [ext_resource type="PackedScene" uid="uid://c7dkpfdqsxjvn" path="res://Scenes/Camera/camera.tscn" id="3_n8yra"]
 [ext_resource type="Texture2D" uid="uid://m1dm8x8j50ud" path="res://Assets/grass.png" id="5_uxobj"]
+[ext_resource type="Texture2D" uid="uid://c6vsnuxhrx28e" path="res://Assets/woods_above.png" id="6_j732q"]
 [ext_resource type="Texture2D" uid="uid://clj52r4afudaq" path="res://Assets/woods.png" id="6_k0axv"]
 [ext_resource type="PackedScene" uid="uid://vkfx0xc2vkeg" path="res://Scenes/Platforms/MovingPlatform.tscn" id="6_laido"]
 [ext_resource type="PackedScene" uid="uid://csm42lkak0rhj" path="res://Scenes/Character/NPC.tscn" id="6_vjb8f"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bxlym0fniys2n" path="res://Assets/tire.png" id="13_k0axv"]
 [ext_resource type="Texture2D" uid="uid://oby3iiqucato" path="res://Assets/NPCs/youngster-headshot.png" id="13_uqgby"]
 [ext_resource type="Texture2D" uid="uid://6t355xhcwi4j" path="res://Assets/NPCs/youngster.png" id="14_3gokw"]
+[ext_resource type="Texture2D" uid="uid://et0h4spnt5ro" path="res://Assets/strawberryShell.png" id="17_g05p3"]
 [ext_resource type="AudioStream" uid="uid://bu7ucmx7o8s6l" path="res://Assets/Music/Voices/pops.wav" id="19_laido"]
 [ext_resource type="Texture2D" uid="uid://u4qop3pelae4" path="res://Assets/NPCs/Dark souls snaul-headshot.png" id="20_mup3o"]
 [ext_resource type="Texture2D" uid="uid://qty6mdft2ac0" path="res://Assets/rock1.png" id="21_4e8l7"]
@@ -40,6 +42,13 @@
 [ext_resource type="Texture2D" uid="uid://bos7js44hc4et" path="res://Assets/smallShell.png" id="34_b6e0n"]
 [ext_resource type="Texture2D" uid="uid://b32fvhwkyij75" path="res://Assets/podium.png" id="35_b6e0n"]
 [ext_resource type="AudioStream" uid="uid://k5hovwj786ho" path="res://Assets/Music/Forest.mp3" id="40_pgvps"]
+[ext_resource type="Texture2D" uid="uid://by82oeoua1mvg" path="res://Assets/branchR.png" id="41_sew6s"]
+[ext_resource type="Texture2D" uid="uid://dmdep7vjwkksn" path="res://Assets/branchL.png" id="42_f7pnh"]
+[ext_resource type="Texture2D" uid="uid://cycl4u64f6gx8" path="res://Assets/BranchLM.png" id="43_gvoq0"]
+[ext_resource type="Texture2D" uid="uid://bqto8t71w5g13" path="res://Assets/tree large.png" id="44_4e05u"]
+[ext_resource type="Texture2D" uid="uid://dc002fapwsoj3" path="res://Assets/movingPlatform.webp" id="46_f7pnh"]
+[ext_resource type="Texture2D" uid="uid://cdixsilf1a6c2" path="res://Assets/birdhouse.svg" id="47_4e05u"]
+[ext_resource type="Texture2D" uid="uid://cb8h33joldang" path="res://Assets/birdhousePole.png" id="48_g05p3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceigu"]
 texture = ExtResource("1_r4qur")
@@ -562,7 +571,7 @@ shape_matching_rate = 1.0
 friction = 15.0
 static_friction = 10.0
 z_as_relative = false
-position = Vector2(23988, -2075)
+position = Vector2(28919, -4446)
 launch_force_multiplier = 0.06
 
 [node name="Camera" parent="PhysicsWorld/Player" unique_id=1925062317 node_paths=PackedStringArray("target_player") instance=ExtResource("3_n8yra")]
@@ -585,8 +594,14 @@ position = Vector2(17000, -1380)
 scale = Vector2(7, 7)
 texture = ExtResource("6_k0axv")
 region_enabled = true
-region_rect = Rect2(22.533, 0, 5000, 474.613)
+region_rect = Rect2(2.561, 0, 5000, 474.613)
 region_filter_clip_enabled = true
+
+[node name="WoodsAbove" type="Sprite2D" parent="Background Elements/Woods BG" unique_id=1829274334]
+position = Vector2(0, -727)
+texture = ExtResource("6_j732q")
+region_enabled = true
+region_rect = Rect2(-3.02, 0, 5000, 1000)
 
 [node name="Can house" type="Sprite2D" parent="Background Elements" unique_id=396453005]
 z_index = -2
@@ -646,7 +661,7 @@ position = Vector2(3027.979, -100.96234)
 scale = Vector2(1.4732599, 1.6144633)
 texture = ExtResource("5_uxobj")
 region_enabled = true
-region_rect = Rect2(-2, -0.715, 1301.735, 363.5)
+region_rect = Rect2(1.21, 5.145, 1301.735, 357.455)
 
 [node name="Grass2" type="Sprite2D" parent="ForegroundElements/Grass" unique_id=281025731]
 z_index = 2
@@ -655,17 +670,23 @@ position = Vector2(8204.934, -112.11156)
 scale = Vector2(1.4732599, 1.6144633)
 texture = ExtResource("5_uxobj")
 region_enabled = true
-region_rect = Rect2(-2, 0.6, 1180.495, 363.5)
+region_rect = Rect2(1.52, 0.6, 1180.495, 363.5)
 
 [node name="car" type="Sprite2D" parent="ForegroundElements" unique_id=366573412]
 position = Vector2(11786.72, -994)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_e4acw")
 
-[node name="Podium" type="Sprite2D" parent="ForegroundElements" unique_id=1892582849]
+[node name="PodiumSmShell" type="Sprite2D" parent="ForegroundElements" unique_id=1892582849]
 z_index = 1
 position = Vector2(24156, -1959)
 scale = Vector2(0.24000001, 0.5)
+texture = ExtResource("35_b6e0n")
+
+[node name="PodiumStrawberry" type="Sprite2D" parent="ForegroundElements" unique_id=1039453119]
+z_index = 1
+position = Vector2(29105, -4375)
+scale = Vector2(0.14, 0.14)
 texture = ExtResource("35_b6e0n")
 
 [node name="NPC\'s" type="Node" parent="." unique_id=1289073510]
@@ -767,6 +788,18 @@ prompt_offset = Vector2(-45, -50)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("34_b6e0n")
 
+[node name="WearableInteractible2" parent="NPC\'s" unique_id=2132795823 instance=ExtResource("33_ltre7")]
+position = Vector2(29106, -4422)
+speaker_name = "Strawberry Shell"
+dialogue_lines = Array[String](["You found a sweet treat! Or home sweet home?", "Would you like to put it on?"])
+
+[node name="StrawberryShell" type="Sprite2D" parent="NPC\'s/WearableInteractible2" unique_id=1934151343]
+z_index = 1
+position = Vector2(8.001953, 11.000488)
+rotation = 0.28099802
+scale = Vector2(0.19999999, 0.19999999)
+texture = ExtResource("17_g05p3")
+
 [node name="Objects" type="Node" parent="." unique_id=251927178]
 
 [node name="Log" type="Sprite2D" parent="Objects" unique_id=285818821]
@@ -843,22 +876,24 @@ data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 data_polygon = PackedInt32Array(5, 4, 3, 2, 1, 0, 29, 30, 31, 32, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6)
 scale = Vector2(0.415, 0.995)
 
-[node name="MovingPlatform" parent="Objects" unique_id=509841853 instance=ExtResource("6_laido")]
+[node name="First Steps" type="Node" parent="Objects" unique_id=1889807204]
+
+[node name="MovingPlatform" parent="Objects/First Steps" unique_id=509841853 instance=ExtResource("6_laido")]
 kinematic = true
 can_sleep = false
 position = Vector2(21143, -762)
 target_offset = Vector2(1500, -335)
 travel_time = 10.0
 
-[node name="StumpLarge" type="Sprite2D" parent="Objects" unique_id=868923203]
+[node name="StumpLarge" type="Sprite2D" parent="Objects/First Steps" unique_id=868923203]
 z_index = -2
 position = Vector2(24134, -1480.0001)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_18vnk")
 
-[node name="RigidBody" parent="Objects/StumpLarge" unique_id=1085457600 instance=ExtResource("11_bvbs8")]
+[node name="RigidBody" parent="Objects/First Steps/StumpLarge" unique_id=1085457600 instance=ExtResource("11_bvbs8")]
 
-[node name="Mesh" parent="Objects/StumpLarge/RigidBody" index="0" unique_id=594603432]
+[node name="Mesh" parent="Objects/First Steps/StumpLarge/RigidBody" index="0" unique_id=594603432]
 data_particle_positions = PackedVector2Array(-695, 371.00012, -685, 390.00012, 677, 397.00012, 644, 335.00012, 644, 321.00012, 618, 279.00012, 620, 247.00012, 552, 176.00012, 533, 147.00012, 511, 133.00012, 504, 113.00012, 483, 79.00012, 468, 17.000122, 458, -97.99988, 458, -188.99988, 476, -439.99988, 445, -463.99988, 416, -469.99988, 374, -465.99988, -387, -454.99988, -392, -438.99988, -410, -410.99988, -429, -393.99988, -419, -148.99988, -435, -124.99988, -439, -20.999878, -467, 55.000122, -481, 129.00012, -498, 168.00012, -532, 208.00012, -579, 240.00012, -609, 277.00012, -648, 309.00012)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
 data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
@@ -867,25 +902,27 @@ data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 data_polygon = PackedInt32Array(1, 0, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
 scale = Vector2(1.67, 1.67)
 
-[node name="MovingPlatform2" parent="Objects" unique_id=798877920 instance=ExtResource("6_laido")]
+[node name="MovingPlatform2" parent="Objects/First Steps" unique_id=798877920 instance=ExtResource("6_laido")]
 position = Vector2(23161, -1309)
 target_offset = Vector2(-621, -587)
 travel_time = 8.0
 pause_duration = 2.0
 
-[node name="Sprite2D" parent="Objects/MovingPlatform2" index="0" unique_id=1720066039]
+[node name="Sprite2D" parent="Objects/First Steps/MovingPlatform2" index="0" unique_id=1720066039]
 position = Vector2(-64.985, 1.005)
 rotation = 0.17802358
 scale = Vector2(-0.4, 0.4)
 
-[node name="Fence" type="Sprite2D" parent="Objects" unique_id=696551677]
+[node name="Forest" type="Node" parent="Objects" unique_id=246826986]
+
+[node name="Fence" type="Sprite2D" parent="Objects/Forest" unique_id=696551677]
 position = Vector2(29606, -770.00006)
 scale = Vector2(3, 3)
 texture = ExtResource("31_66ojk")
 
-[node name="RigidBody" parent="Objects/Fence" unique_id=1974542193 instance=ExtResource("11_bvbs8")]
+[node name="RigidBody" parent="Objects/Forest/Fence" unique_id=1974542193 instance=ExtResource("11_bvbs8")]
 
-[node name="Mesh" parent="Objects/Fence/RigidBody" index="0" unique_id=594603432]
+[node name="Mesh" parent="Objects/Forest/Fence/RigidBody" index="0" unique_id=594603432]
 data_particle_positions = PackedVector2Array(-203, 782.00006, -222, -709.99994, -152, -712.99994, -103, -515.99994, -79, -515.99994, -2, -745.99994, 134, -754.99994, 196, -499.99994, 180, -485.99994, 211, 785.00006)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
 data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAA==")
@@ -894,16 +931,16 @@ data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAA==")
 data_polygon = PackedInt32Array(9, 0, 1, 2, 3, 4, 5, 6, 7, 8)
 scale = Vector2(0.335, 0.335)
 
-[node name="Flower" type="Sprite2D" parent="Objects" unique_id=1177726959]
+[node name="Flower" type="Sprite2D" parent="Objects/Forest" unique_id=1177726959]
 z_index = 1
 position = Vector2(29228, -271.00003)
 rotation = 0.28099802
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("32_nsb4r")
 
-[node name="RigidBody" parent="Objects/Flower" unique_id=1420140717 instance=ExtResource("11_bvbs8")]
+[node name="RigidBody" parent="Objects/Forest/Flower" unique_id=1420140717 instance=ExtResource("11_bvbs8")]
 
-[node name="Mesh" parent="Objects/Flower/RigidBody" index="0" unique_id=594603432]
+[node name="Mesh" parent="Objects/Forest/Flower/RigidBody" index="0" unique_id=594603432]
 data_particle_positions = PackedVector2Array(-73.58071, 322.03552, -119.76343, 158.42578, -141.12762, 131.28593, -153.6374, 127.61095, -159.6008, 157.43439, -169.5951, 169.6865, -188.6622, 179.35321, -201.7659, 159.1965, -198.53635, 134.32544, -197.07986, 114.129425, -176.25934, 92.50755, -224.74373, 94.01199, -215.17523, 76.67868, -184.83644, 70.00349, -145.81136, 75.392624, -144.61256, 61.51592, -169.69104, 32.325684, -192.49207, 32.661934, -198.14754, 23.886086, -191.73871, 6.4239388, -154.99106, -17.713406, -192.50073, -21.458302, -203.51474, -30.769135, -185.68575, -41.11932, -173.32445, -41.56476, -169.09482, -52.152977, -158.1201, -57.40231, -184.3581, -58.155678, -185.0612, -64.19767, -171.07532, -73.4386, -145.11464, -73.64601, -109.93267, -67.14761, -154.63287, -88.59268, -140.64699, -97.83361, -127.0476, -97.59558, -103.96926, -96.971054, -95.45108, -96.307236, -69.1738, -80.993706, -53.117867, -86.66883, -39.51848, -86.4308, -40.22159, -92.47279, -70.04503, -98.4362, -74.86857, -104.32971, -80.93021, -110.906685, -79.98907, -118.464096, -87.97226, -124.48644, -87.86307, -134.92618, -81.56341, -141.94858, -84.89119, -153.47792, -93.280525, -157.3014, -112.68388, -170.4357, -117.78473, -177.29, -114.77356, -181.28159, -104.05651, -180.21162, -113.14896, -190.07709, -113.594406, -202.43837, -110.602875, -213.71007, -102.10434, -220.32632, -91.6646, -220.21712, -84.14649, -233.83615, -78.233345, -231.37962, -71.7852, -234.2816, -63.821655, -235.53934, -56.412735, -238.71863, -46.656464, -237.37135, -45.606136, -255.36848, -52.628555, -261.66815, -67.20837, -268.90894, -74.37926, -279.329, -78.94513, -291.54184, -73.00136, -328.64536, -58.273064, -317.28412, -48.85304, -338.73788, -42.385258, -334.35977, -39.057484, -322.8304, -35.47204, -317.6204, -29.707363, -319.28427, -19.99038, -332.49713, -11.343369, -334.99298, -11.659973, -350.51395, -24.337868, -365.58945, -35.62919, -375.86105, -33.02417, -377.65378, -27.388329, -376.15802, -28.13073, -396.76016, -22.36605, -398.42404, -17.71064, -403.93106, -13.164406, -398.99835, -11.391335, -403.6734, -4.388565, -404.6538, 6.6058044, -402.62305, 14.123909, -416.2421, 24.00901, -418.05444, 30.605637, -416.83603, 33.656097, -406.26746, 39.014618, -405.73245, 42.70925, -410.96213, 50.82129, -408.09946, 66.47107, -411.5757, 264.24667, 241.17981)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
 data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
@@ -912,15 +949,15 @@ data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99)
 scale = Vector2(1.33, 1.33)
 
-[node name="Pot" type="Sprite2D" parent="Objects" unique_id=295508113]
+[node name="Pot" type="Sprite2D" parent="Objects/Forest" unique_id=295508113]
 z_index = -1
 position = Vector2(28632, -96.99994)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("33_tsw64")
 
-[node name="RigidBody" parent="Objects/Pot" unique_id=399924784 instance=ExtResource("11_bvbs8")]
+[node name="RigidBody" parent="Objects/Forest/Pot" unique_id=399924784 instance=ExtResource("11_bvbs8")]
 
-[node name="Mesh" parent="Objects/Pot/RigidBody" index="0" unique_id=594603432]
+[node name="Mesh" parent="Objects/Forest/Pot/RigidBody" index="0" unique_id=594603432]
 data_particle_positions = PackedVector2Array(-95, 125.99994, -126, -57.00006, -145, -69.00006, -150, -118.00006, 151, -117.00006, 148, -68.00006, 131, -58.00006, 98, 126.99994)
 data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
 data_particle_is_internal = PackedByteArray("AAAAAAAAAAA=")
@@ -928,6 +965,310 @@ data_particle_is_enabled = PackedByteArray("AQEBAQEBAQE=")
 data_particle_is_lazy = PackedByteArray("AAAAAAAAAAA=")
 data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
 scale = Vector2(1.66, 1.66)
+
+[node name="BranchR" type="Sprite2D" parent="Objects/Forest" unique_id=1973348584]
+position = Vector2(28345, -568)
+rotation = 0.18675023
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR" unique_id=2040407873 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-609.6623, -156.52763, -502.78323, -118.714035, -264.00275, -72.23955, -224.00984, -70.63703, -159.08029, -71.71095, -68.73419, -83.69355, 19.995184, -109.61839, 122.34975, -144.22392, 195.78294, -170.3116, 229.37744, -175.64165, 365.18652, -184.00223, 428.6307, -192.93706, 509.04214, -192.86552, 426.13132, -179.23474, 349.9674, -172.98499, 191.63538, -149.17401, 84.499115, -107.55881, -118.85607, -36.568214, -108.82144, -21.163464, -54.732094, 1.1824818, 18.452524, 16.867256, 121.91247, 25.813751, 201.17842, 41.36714, 320.53723, 85.981926, 190.20685, 58.70566, 145.54083, 53.915363, 43.806168, 48.713654, 22.311445, 96.535995, 16.832758, 132.17284, 45.451294, 170.52618, 22.905478, 169.6978, 4.1358986, 145.76657, -7.4611645, 111.32085, -7.6382055, 72.6819, -4.418968, 46.63124, -67.274734, 37.136368, -200.96994, -24.105724, -652.75165, -88.34181, -671.5983, -123.45311, -673.4093, -100.721634, -655.7137, -141.71997, -635.3959, -152.68294, -384.42987, -90.1924)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(37, 39, 38, 40, 41, 0, 1, 42, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36)
+modulate = Color(1, 1, 1, 0.3)
+scale = Vector2(1.43, 1.43)
+
+[node name="BranchL" type="Sprite2D" parent="Objects/Forest" unique_id=1974338169]
+position = Vector2(26388, -650)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("42_f7pnh")
+
+[node name="RigidBody" parent="Objects/Forest/BranchL" unique_id=2139456376 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchL/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(480, -73, 477, -89, 469, -100, 456, -108, 434, -111, 373, -92, 358, -84, 162, -50, 118, -51, 31, -65, -39, -87, -92, -105, -131, -119, -156, -125, -209, -129, -255, -132, -295, -136, -326, -139, -362, -138, -290, -128, -303, -128, -322, -125, -341, -118, -357, -109, -371, -96, -361, -90, -331, -89, -257, -125, -198, -118, -156, -112, -135, -107, -59, -77, 23, -44, 46, -38, 88, -27, 78, -15, 58, -5, 39, 2, 165, -18, 222, -26, 269, -35, 307, -42, 338, -48, 368, -50, 411, -53, 446, -56, 465, -63, 474, -68)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_polygon = PackedInt32Array(47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+scale = Vector2(2, 2)
+
+[node name="BranchLm" type="Sprite2D" parent="Objects/Forest" unique_id=518388072]
+position = Vector2(26841, -1143)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("43_gvoq0")
+
+[node name="RigidBody" parent="Objects/Forest/BranchLm" unique_id=1873574872 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchLm/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-56, 222, -36, 217, -16, 199, 0, 175, 8, 145, 8, 104, 6, 71, 6, 56, 62, 52, 101, 42, 140, 23, 176, 8, 223, -10, 246, -20, 257, -31, 312, -31, 863, -130, 863, -147, 857, -163, 846, -179, 830, -189, 816, -195, 798, -199, 780, -199, 675, -166, 659, -159, 645, -151, 606, -139, 528, -121, 471, -111, 421, -103, 367, -96, 321, -92, 268, -90, 241, -89, 225, -87, 207, -82, 186, -74, 168, -61, 157, -47, 146, -35, 141, -30, 129, -20, 87, -3, 10, 17, -41, 26, -95, 29, -135, 32, -187, 39, -221, 45, -259, 54, -281, 62, -310, 75, -337, 87, -401, 106, -354, 100, -299, 88, -271, 82, -265, 97, -250, 110, -220, 122, -186, 131, -149, 131, -54, 64, -25, 142, -30, 186)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_polygon = PackedInt32Array(63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 65, 64)
+scale = Vector2(1.112, 1.112)
+
+[node name="TreeLarge" type="Sprite2D" parent="Objects/Forest" unique_id=603345055]
+position = Vector2(28750.002, -1088)
+scale = Vector2(5, 8)
+texture = ExtResource("44_4e05u")
+
+[node name="RigidBody" parent="Objects/Forest/TreeLarge" unique_id=206066174 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/TreeLarge/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-1023.00195, -177, -1016.00195, -241, -982.00195, -270, -939.00195, -310, -888.00195, -330, -865.00195, -356, -847.00195, -399, -856.00195, -481, -824.00195, -525, -839.00195, -573, -808.00195, -621, -814.00195, -689, -765.00195, -684, -730.00195, -695, -684.00195, -665, -644.00195, -676, -649.00195, -746, -646.00195, -792, -593.00195, -821, -546.00195, -838, -548.00195, -910, -500.00195, -947, -456.00195, -944, -469.00195, -1000, -423.00195, -1006, -402.00195, -986, -374.00195, -986, -340.00195, -1060, -301.00195, -1108, -233.00195, -1061, -189.00195, -1063, -124.00195, -1043, -31.001953, -1097, -4.001953, -1023, 87.99805, -1070, 163.99805, -1036, 191.99805, -987, 209.99805, -926, 276.99805, -935, 299.99805, -864, 365.99805, -906, 392.99805, -820, 464.99805, -802, 449.99805, -604, 526.99805, -588, 569.99805, -504, 608.99805, -542, 687.99805, -516, 697.99805, -465, 669.99805, -403, -53.001953, -240, -784.00195, -159)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(50, 51, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49)
+position = Vector2(0, -2.055)
+scale = Vector2(0.2, 0.123)
+
+[node name="BranchR2" type="Sprite2D" parent="Objects/Forest" unique_id=195884493]
+position = Vector2(28190.002, -2281.0007)
+rotation = 0.26354474
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR2" unique_id=1793844156 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR2/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-575.5567, -87.070465, -570.4071, -110.21092, -559.93994, -121.32127, -545.5344, -129.35124, -520.8766, -133.93292, -443.50177, -108.20095, -431.5025, -102.11674, -414.15485, -95.40411, -307.4788, -72.39942, -209.01663, -60.64335, -174.81148, -60.550743, -141.83232, -61.16311, -95.597046, -66.388016, -57.867065, -72.42529, -7.662491, -85.97153, 69.238266, -111.89976, 113.83397, -127.03989, 154.56778, -141.138, 183.27145, -149.91861, 206.51935, -152.04832, 233.18466, -153.02861, 309.76318, -157.1189, 349.6846, -162.7117, 386.00464, -166.29703, 435.9944, -165.28464, 347.90677, -153.94589, 264.38596, -144.87518, 210.16641, -138.53171, 188.6655, -133.76608, 165.23366, -128.47945, 141.61786, -120.03589, 73.22238, -93.29527, 81.02271, -91.25691, 97.51229, -91.563095, 120.39226, -87.37897, 146.06123, -76.69704, 164.9719, -64.19156, 175.82175, -54.68993, 166.24356, -47.962486, 151.24045, -45.985867, 126.50609, -45.526592, 104.40763, -46.814304, 88.10201, -49.665047, 63.582466, -63.764404, 45.300224, -81.61825, -17.302408, -56.44066, -49.607468, -45.65256, -105.42092, -33.70022, -95.46002, -19.815683, -70.235504, -6.942299, -18.529634, 8.107725, 19.950989, 16.368574, 66.339355, 19.388462, 121.49352, 24.186209, 147.53041, 28.554295, 178.99222, 37.673203, 205.88718, 49.06011, 231.81665, 60.707516, 268.62683, 70.45485, 208.30826, 61.871758, 98.55181, 42.805496, 39.3518, 42.206696, 180.52438, 54.867756, 134.50394, 45.53402, 176.11061, 65.38054, 165.82747, 73.333954, 149.23047, 80.91946, 130.88649, 85.86904, 108.60407, 87.73825, 99.13331, 87.18637, 100.83461, 74.29818, 110.780716, 61.25689, 123.96028, 52.52196, 26.846333, 61.117363, 19.949741, 81.621925, 15.244601, 102.57095, 22.983192, 127.412735, 39.15053, 148.9445, 23.549881, 144.8678, 8.761606, 132.28578, -0.75483704, 116.20979, -4.9994564, 96.63983, -6.3476563, 76.28837, -5.7649117, 55.415886, -4.140148, 38.405293, -39.387306, 34.450798, -65.945206, 28.151766, -80.166794, 33.024807, -119.19929, 34.234726, -140.85329, 30.755564, -128.63919, 22.281136, -113.71264, 16.182117, -95.55261, 14.389454, -130.50839, -0.0012817383, -155.65636, -8.752274, -167.91615, -15.801952, -171.41011, -21.073776, -206.32022, -19.940407, -237.70547, -24.936916, -281.5345, -33.826187, -322.91153, -41.305527, -362.3576, -49.305862, -403.47418, -55.819733, -445.74014, -58.91617, -483.8837, -62.08915, -526.41016, -66.151054, -556.646, -74.56499)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 62, 64, 65, 66, 67, 68, 69, 70, 71, 72, 63, 60, 61, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106)
+scale = Vector2(1.67, 1.67)
+
+[node name="BranchLm2" type="Sprite2D" parent="Objects/Forest" unique_id=1275315089]
+position = Vector2(26138, -2270.0007)
+rotation = 0.71383965
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("43_gvoq0")
+
+[node name="RigidBody" parent="Objects/Forest/BranchLm2" unique_id=1371225720 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchLm2/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(672.18604, -100.69, 669.8223, -117.16464, 666.3994, -128.75272, 658.4414, -136.41237, 645.04333, -147.29764, 630.58594, -153.29643, 606.60583, -155.01532, 639.73737, -83.16617, 606.58594, -75.617615, 558.1201, -72.00244, 487.53738, -66.42807, 462.59918, -64.67105, 448.9458, -62.10515, 336.04022, -39.714706, 245.55496, -23.515305, 223.6402, -24.37725, 200.96957, -24.584465, 191.14348, -16.07283, 173.50856, -7.4120255, -232.51723, 69.11293, -312.82495, 81.78834, -282.4947, 74.03755, -260.72913, 67.090675, -240.92773, 57.876244, -216.79349, 47.55455, -200.77138, 41.613815, -181.92809, 35.875305, -154.62123, 30.743477, -123.83844, 26.569721, -94.56737, 23.705452, -65.3974, 22.251776, -33.305138, 19.58973, 3.9769888, 13.755094, 36.473705, 5.450672, 92.34883, -12.520702, 110.73961, -21.83625, 136.28944, -51.906265, 145.25858, -58.352562, 167.12527, -66.71003, 186.5222, -70.28209, 243.2493, -70.46937, 296.04797, -75.191765, 362.70227, -85.30127, 455.45508, -103.46489, 498.88513, -115.94806, 514.4547, -125.465836, 539.99963, -135.68642, 566.85394, -144.39528)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_polygon = PackedInt32Array(6, 5, 4, 3, 2, 1, 0, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47)
+scale = Vector2(1.43, 1.43)
+
+[node name="BranchR3" type="Sprite2D" parent="Objects/Forest" unique_id=368775342]
+position = Vector2(27374.002, -1854.0001)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR3" unique_id=696335738 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR3/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(133.99805, 35.000122, 112.99805, 29.000122, 99.99805, 24.000122, 88.99805, 19.000122, 74.99805, 15.000122, 51.998047, 11.000122, 32.998047, 9.000122, 3.9980469, 7.000122, -14.001953, 3.000122, -34.001953, -2.999878, -46.001953, -8.999878, -53.001953, -15.999878, -34.001953, -19.999878, -9.001953, -27.999878, 4.998047, -33.999878, 22.998047, -40.999878, 32.998047, -30.999878, 44.998047, -24.999878, 61.998047, -21.999878, 77.99805, -23.999878, 87.99805, -26.999878, 76.99805, -36.999878, 63.998047, -42.999878, 53.998047, -44.999878, 45.998047, -45.999878, 35.998047, -46.999878, 79.99805, -62.999878, 94.99805, -66.99988, 109.99805, -69.99988, 174.99805, -75.99988, 217.99805, -81.99988, 191.99805, -82.99988, 169.99805, -80.99988, 158.99805, -78.99988, 143.99805, -77.99988, 114.99805, -75.99988, 93.99805, -74.99988, 82.99805, -71.99988, 65.99805, -66.99988, 39.998047, -56.999878, 20.998047, -50.999878, 2.9980469, -44.999878, -22.001953, -37.999878, -51.001953, -31.999878, -83.00195, -29.999878, -119.00195, -31.999878, -151.00195, -35.999878, -175.00195, -39.999878, -215.00195, -50.999878, -224.00195, -55.999878, -244.00195, -61.999878, -261.00195, -66.99988, -271.00195, -64.99988, -282.00195, -60.999878, -286.00195, -52.999878, -288.00195, -43.999878, -274.00195, -35.999878, -31.001953, 15.000122, 85.99805, 28.000122, 112.99805, 34.000122)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+data_polygon = PackedInt32Array(0, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+scale = Vector2(3.34, 3.34)
+
+[node name="MovingPlatform3" type="Sprite2D" parent="Objects/Forest" unique_id=1441279952]
+z_index = -1
+position = Vector2(27312, -737)
+texture = ExtResource("46_f7pnh")
+
+[node name="RigidBody" parent="Objects/Forest/MovingPlatform3" unique_id=1002471446 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/MovingPlatform3/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-209, 36, 227, 36, 290, 83, 292, 123, -272, 127, -275, 88)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAA")
+data_polygon = PackedInt32Array(4, 5, 0, 1, 2, 3)
+
+[node name="BranchL2" type="Sprite2D" parent="Objects/Forest" unique_id=2102094481]
+position = Vector2(25574, -3095)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("42_f7pnh")
+
+[node name="RigidBody" parent="Objects/Forest/BranchL2" unique_id=643853 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchL2/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(4, 45, 8, 75, 4, 126, -12, 157, -44, 173, -27, 148, -17, 126, -24, 94, -44, 50, -155, 53, -135, 67, -119, 85, -115, 101, -151, 101, -183, 92, -206, 78, -210, 65, -312, 83, -259, 65, -234, 53, -199, 40, -151, 30, -110, 24, -59, 22, -3, 13, 44, 4, 83, -7, 111, -20, 124, -38, 51, -57, 5, -74, -39, -91, -89, -112, -146, -134, -200, -153, -236, -161, -360, -176, -398, -140, -421, -128, -453, -124, -487, -125, -521, -133, -503, -150, -475, -165, -449, -175, -453, -185, -508, -192, -453, -193, -414, -190, -369, -185, -329, -181, -281, -180, -242, -176, -204, -171, -170, -163, -129, -147, -87, -131, -29, -113, 30, -94, 95, -81, 149, -71, 215, -70, 302, -78, 383, -89, 435, -99, 493, -115, 517, -129, 566, -142, 609, -157, 636, -153, 660, -139, 672, -116, 673, -101, 199, -25)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_polygon = PackedInt32Array(73, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72)
+scale = Vector2(1.43, 1.43)
+
+[node name="BranchR4" type="Sprite2D" parent="Objects/Forest" unique_id=1360204432]
+position = Vector2(27122, -3429)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR4" unique_id=573230407 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR4/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-672, -102, -668, -120, -661, -136, -648, -146, -627, -154, -608, -156, -651, -89, -622, -79, -577, -73, -521, -68, -466, -65, -418, -57, -344, -42, -246, -22, -199, -26, -187, -14, -161, -1, -110, 16, 146, -135, 200, -153, 242, -161, 296, -168, 346, -173, 387, -178, 443, -181, 509, -192, 437, -193, 397, -189, 356, -183, 313, -181, 269, -179, 213, -174, 178, -165, 132, -148, 30, -112, -49, -88, -124, -74, -174, -71, -232, -70, -299, -76, -366, -86, -473, -108, -508, -121, -526, -131)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_polygon = PackedInt32Array(5, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 0, 1, 2, 3, 4)
+scale = Vector2(1.43, 1.43)
+
+[node name="MovingPlatform4" type="Sprite2D" parent="Objects/Forest" unique_id=1604210665]
+z_index = -1
+position = Vector2(28084, -3681)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("46_f7pnh")
+
+[node name="RigidBody" parent="Objects/Forest/MovingPlatform4" unique_id=1926637636 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/MovingPlatform4/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-163, 75, -164, 53, 175, 75, 173, 50, 136, 22, -129, 25)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAA")
+data_polygon = PackedInt32Array(0, 1, 5, 4, 3, 2)
+scale = Vector2(1.68, 1.68)
+
+[node name="MovingPlatform5" type="Sprite2D" parent="Objects/Forest" unique_id=480796501]
+z_index = -1
+position = Vector2(28825, -3841)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("46_f7pnh")
+
+[node name="RigidBody" parent="Objects/Forest/MovingPlatform5" unique_id=191998038 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/MovingPlatform5/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-136, 64, -137, 44, 146, 62, 145, 42, 114, 19, -107, 19)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAA")
+data_particle_is_enabled = PackedByteArray("AQEBAQEB")
+data_particle_is_lazy = PackedByteArray("AAAAAAAA")
+data_polygon = PackedInt32Array(0, 1, 5, 4, 3, 2)
+scale = Vector2(2, 2)
+
+[node name="Birdhouse" type="Sprite2D" parent="Objects/Forest" unique_id=260966223]
+position = Vector2(29801, -2708)
+scale = Vector2(2, 2)
+texture = ExtResource("47_4e05u")
+
+[node name="BirdhousePole" type="Sprite2D" parent="Objects/Forest/Birdhouse" unique_id=278053240]
+position = Vector2(-0.5, 587.5)
+texture = ExtResource("48_g05p3")
+
+[node name="BirdhousePole2" type="Sprite2D" parent="Objects/Forest/Birdhouse" unique_id=1703351662]
+position = Vector2(-0.5, 984)
+texture = ExtResource("48_g05p3")
+
+[node name="BirdhousePole3" type="Sprite2D" parent="Objects/Forest/Birdhouse" unique_id=282193663]
+z_index = -1
+position = Vector2(-0.5, 1348.5)
+texture = ExtResource("48_g05p3")
+
+[node name="RigidBody" parent="Objects/Forest/Birdhouse" unique_id=852938186 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/Birdhouse/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(66, 2725, -28, 1325, -43, 2729, -26, -144, -171, -166, -206, -147, -218, -146, -228, -155, -232, -169, -230, -177, -299, -187, -305, -470, -358, -454, -375, -474, -141, -742, 155, -785, 377, -531, 358, -515, 317, -496, 309, -264, 99, -120, 66, -126)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 0)
+scale = Vector2(0.5, 0.5)
+
+[node name="MovingPlatform" parent="Objects/Forest" unique_id=16257928 instance=ExtResource("6_laido")]
+position = Vector2(25718, -2423)
+target_offset = Vector2(-1015, -877)
+travel_time = 12.0
+pause_duration = 2.0
+
+[node name="Sprite2D" parent="Objects/Forest/MovingPlatform" index="0" unique_id=1720066039]
+z_index = -1
+position = Vector2(-76.27, 2.335)
+rotation = 0.20245819
+scale = Vector2(-0.4, 0.4)
+
+[node name="BranchLm3" type="Sprite2D" parent="Objects/Forest" unique_id=1216592188]
+position = Vector2(25849, -3751)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("43_gvoq0")
+
+[node name="RigidBody" parent="Objects/Forest/BranchLm3" unique_id=1827146612 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchLm3/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(384, -58, 383, -66, 380, -75, 373, -81, 364, -87, 348, -88, 314, -80, 293, -72, 283, -66, 201, -48, 130, -40, 107, -40, 87, -35, 76, -29, 64, -14, 37, -1, 8, 7, -17, 11, -63, 14, -82, 16, -101, 20, -119, 25, -137, 33, -178, 47, -120, 36, 36, 22, 124, -12, 284, -39)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(0, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+scale = Vector2(2.505, 2.505)
+
+[node name="BranchR5" type="Sprite2D" parent="Objects/Forest" unique_id=557483839]
+position = Vector2(26849, -4006)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR5" unique_id=1960377639 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR5/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(31, 123, -3, 92, -4, 31, 30, 36, 102, 36, 218, 60, 130, -105, 153, -111, 188, -117, 292, -128, 363, -138, 298, -137, 272, -133, 170, -127, 152, -124, 131, -119, 115, -113, -27, -66, -46, -61, -95, -53, -145, -50, -204, -53, -274, -64, -317, -72, -359, -84, -372, -91, -391, -99, -433, -111, -452, -109, -464, -102, -473, -96, -478, -83, -480, -72, -466, -64, -446, -56, -392, -51, -140, -15)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(5, 4, 3, 0, 1, 2, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6)
+scale = Vector2(2, 2)
+
+[node name="BranchL3" type="Sprite2D" parent="Objects/Forest" unique_id=1254184562]
+position = Vector2(27805.002, -4297)
+rotation = -0.08901178
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("43_gvoq0")
+
+[node name="RigidBody" parent="Objects/Forest/BranchL3" unique_id=415269389 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchL3/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-178.91344, 47.282806, -156.28938, 41.270153, -143.80351, 36.360638, -124.98583, 28.000324, -107.34198, 21.5432, -85.891754, 17.433731, -62.538334, 14.498096, -39.273815, 12.5585, -20.082352, 11.259369, -1.798035, 8.875302, 16.664068, 4.499152, 35.21507, -0.8730378, 61.27172, -11.599214, 68.95516, -18.945282, 75.73146, -27.376286, 84.32205, -33.63742, 98.79999, -38.36915, 107.94215, -39.56118, 125.05263, -40.04206, 147.14333, -40.07847, 193.93906, -46.94578, 272.58987, -62.013824, 289.23767, -68.559845, 300.8164, -74.55429, 316.37927, -80.19317, 346.2423, -88.571686, 357.28766, -88.58989, 367.97742, -84.62393, 377.49335, -78.754776, 381.76242, -70.34198, 384.67987, -58.033913, 372.92337, -50.047382, 318.97754, -41.810246, 114.68416, -13.860105, 1.7598617, 25.25643, -2.577754, 85.10779, -15.685873, 96.989586, -24.916925, 99.17766, -11.471434, 72.26635, -14.40707, 48.912933, -24.67057, 28.921425, -55.81453, 29.153824, -91.20933, 32.018772, -75.80604, 39.417328, -65.275856, 56.420715, -89.447525, 57.275375, -110.915955, 50.339493, -120.80568, 37.409164, -168.86412, 47.175713)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ==")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==")
+data_polygon = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48)
+scale = Vector2(2.5, 2.5)
+
+[node name="BranchR6" type="Sprite2D" parent="Objects/Forest" unique_id=1543734511]
+position = Vector2(29289, -4304)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("41_sew6s")
+
+[node name="RigidBody" parent="Objects/Forest/BranchR6" unique_id=1873722309 instance=ExtResource("11_bvbs8")]
+
+[node name="Mesh" parent="Objects/Forest/BranchR6/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(45, 174, 23, 166, 0, 137, -7, 108, -4, 44, -48, 40, -78, 33, -97, 39, -138, 41, -163, 37, -146, 23, -112, 15, -177, -10, -200, -25, -239, -22, -316, -37, -406, -55, -463, -65, -593, -75, -630, -81, -653, -90, -672, -100, -666, -129, -651, -144, -632, -152, -609, -156, -538, -135, -507, -121, -467, -107, -367, -86, -267, -72, -204, -70, -123, -75, -80, -82, -23, -97, 23, -110, 90, -133, 137, -150, 170, -161, 206, -173, 242, -177, 298, -180, 388, -187, 447, -193, 509, -192, 447, -183, 380, -177, 316, -169, 249, -162, 123, 24)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_particle_is_enabled = PackedByteArray("AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=")
+data_particle_is_lazy = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+data_polygon = PackedInt32Array(49, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48)
+scale = Vector2(1.43, 1.43)
 
 [node name="Locations" type="Node" parent="." unique_id=1061163169]
 
@@ -960,6 +1301,7 @@ shape = SubResource("RectangleShape2D_brx3m")
 debug_color = Color(0.6456857, 0.5224494, 1.92523e-07, 0.41960785)
 
 [node name="Great Forest" type="Area2D" parent="Locations" unique_id=1863754274]
+visible = false
 position = Vector2(28027, -1400)
 scale = Vector2(0.48000002, 1)
 collision_layer = 4
@@ -981,11 +1323,30 @@ debug_color = Color(0.6456857, 0.5224494, 1.92523e-07, 0.41960785)
 [editable path="NPC\'s/AI Snial"]
 [editable path="NPC\'s/Dark Snail"]
 [editable path="NPC\'s/WearableInteractible"]
+[editable path="NPC\'s/WearableInteractible2"]
 [editable path="Objects/Log/Front/RigidBody"]
 [editable path="Objects/Rock/RigidBody"]
 [editable path="Objects/cliff face/RigidBody"]
-[editable path="Objects/StumpLarge/RigidBody"]
-[editable path="Objects/MovingPlatform2"]
-[editable path="Objects/Fence/RigidBody"]
-[editable path="Objects/Flower/RigidBody"]
-[editable path="Objects/Pot/RigidBody"]
+[editable path="Objects/First Steps/StumpLarge/RigidBody"]
+[editable path="Objects/First Steps/MovingPlatform2"]
+[editable path="Objects/Forest/Fence/RigidBody"]
+[editable path="Objects/Forest/Flower/RigidBody"]
+[editable path="Objects/Forest/Pot/RigidBody"]
+[editable path="Objects/Forest/BranchR/RigidBody"]
+[editable path="Objects/Forest/BranchL/RigidBody"]
+[editable path="Objects/Forest/BranchLm/RigidBody"]
+[editable path="Objects/Forest/TreeLarge/RigidBody"]
+[editable path="Objects/Forest/BranchR2/RigidBody"]
+[editable path="Objects/Forest/BranchLm2/RigidBody"]
+[editable path="Objects/Forest/BranchR3/RigidBody"]
+[editable path="Objects/Forest/MovingPlatform3/RigidBody"]
+[editable path="Objects/Forest/BranchL2/RigidBody"]
+[editable path="Objects/Forest/BranchR4/RigidBody"]
+[editable path="Objects/Forest/MovingPlatform4/RigidBody"]
+[editable path="Objects/Forest/MovingPlatform5/RigidBody"]
+[editable path="Objects/Forest/Birdhouse/RigidBody"]
+[editable path="Objects/Forest/MovingPlatform"]
+[editable path="Objects/Forest/BranchLm3/RigidBody"]
+[editable path="Objects/Forest/BranchR5/RigidBody"]
+[editable path="Objects/Forest/BranchL3/RigidBody"]
+[editable path="Objects/Forest/BranchR6/RigidBody"]

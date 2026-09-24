@@ -20,7 +20,7 @@ func _on_dialogue_finished() -> void:
 
 func _show_choice_prompt() -> void:
 	var choice_dialog = AcceptDialog.new()
-	choice_dialog.dialog_text = "Do you want to put on the item, or leave it alone?"
+	choice_dialog.dialog_text = "Do you want to put on the item, or leave it alone? \n          (wearing the item triggers an ending.)"
 	choice_dialog.title = "Make a Choice"
 	
 	choice_dialog.ok_button_text = "Put It On"
