@@ -64,3 +64,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector" unique_id=766876130]
 position = Vector2(-0.5, -32.5)
 shape = SubResource("RectangleShape2D_brx3m")
+
+[node name="ShellHolder" type="Sprite2D" parent="." unique_id=456550652]
+position = Vector2(-1, -33)

@@ -45,7 +45,7 @@ fit_content = true
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2075271309]
 unique_name_in_owner = true
 layout_mode = 2
-text = "▼ [E]"
+text = "next [E]"
 horizontal_alignment = 1
 vertical_alignment = 2
 

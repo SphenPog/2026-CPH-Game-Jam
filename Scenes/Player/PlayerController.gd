@@ -23,6 +23,10 @@ var _overlay: ArrowOverlay
 var _nearby_interactables: Array[Interactible] = []
 @onready var interaction_detector: Area2D = $InteractionDetector
 
+#Shell
+@onready var equipped_shell_sprite: Sprite2D = $ShellHolder
+var _shell_local_offset: Vector2 = Vector2.ZERO
+
 #audio
 var _charge_sfx_player: AudioStreamPlayer
 @export var charge_sfx: AudioStream
@@ -33,6 +37,9 @@ func _ready() -> void:
 	_overlay = ArrowOverlay.new()
 	_overlay.controller = self
 	add_child(_overlay)
+	
+	if equipped_shell_sprite:
+		_shell_local_offset = equipped_shell_sprite.position
 	
 	# initiate interaction settings
 	if DialogueUI:
@@ -142,6 +149,10 @@ func _process(delta: float) -> void:
 		if charge_timer < charge_time_sec:
 			charge_timer = min(charge_timer + delta, charge_time_sec)
 		_redraw_overlay()
+		
+	if equipped_shell_sprite:
+		var target_center = get_aabb().get_center() if has_method("get_aabb") else global_position
+		equipped_shell_sprite.global_position = target_center + _shell_local_offset
 	
 	_update_interaction_detector_position()
 

@@ -1,0 +1,422 @@
+[gd_scene format=3 uid="uid://k828uwchri3q"]
+
+[ext_resource type="PackedScene" uid="uid://c7rc2nvq3j5tc" path="res://Scenes/Player/Player.tscn" id="1_7uqtf"]
+[ext_resource type="Texture2D" uid="uid://bhfaksmtoa1gv" path="res://Assets/fancy shell.png" id="2_7uqtf"]
+[ext_resource type="PackedScene" uid="uid://c7dkpfdqsxjvn" path="res://Scenes/Camera/camera.tscn" id="2_q87og"]
+[ext_resource type="PackedScene" uid="uid://csm42lkak0rhj" path="res://Scenes/Character/NPC.tscn" id="3_07sep"]
+[ext_resource type="Texture2D" uid="uid://cp81fwkaa0dd1" path="res://Assets/NPCs/turbo-headshot.png" id="4_oe635"]
+[ext_resource type="AudioStream" uid="uid://bu7ucmx7o8s6l" path="res://Assets/Music/Voices/pops.wav" id="5_0rhrw"]
+[ext_resource type="Texture2D" uid="uid://bj8el0xqc3qu6" path="res://Assets/NPCs/turbo.png" id="6_4qvqq"]
+[ext_resource type="Texture2D" uid="uid://oby3iiqucato" path="res://Assets/NPCs/youngster-headshot.png" id="7_sbv6h"]
+[ext_resource type="Texture2D" uid="uid://6t355xhcwi4j" path="res://Assets/NPCs/youngster.png" id="8_3787g"]
+[ext_resource type="Texture2D" uid="uid://blgjjugqie2gw" path="res://Assets/NPCs/pops-headshot.png" id="9_g7hi7"]
+[ext_resource type="Texture2D" uid="uid://dl4khp08s3ko7" path="res://Assets/NPCs/pops.png" id="10_5ix2y"]
+[ext_resource type="AudioStream" uid="uid://b5kwighmso54n" path="res://Assets/Music/Voices/genai.wav" id="11_4gakl"]
+[ext_resource type="Texture2D" uid="uid://c5vm08dbufpku" path="res://Assets/NPCs/ai snail.webp" id="12_7rc5a"]
+[ext_resource type="Texture2D" uid="uid://u4qop3pelae4" path="res://Assets/NPCs/Dark souls snaul-headshot.png" id="13_1sq54"]
+[ext_resource type="AudioStream" uid="uid://qnsk2mva6l5t" path="res://Assets/Music/Voices/darkSnail.wav" id="14_cnl5i"]
+[ext_resource type="Texture2D" uid="uid://51eamwsnyx5a" path="res://Assets/NPCs/Dark soul snail.png" id="15_ra44d"]
+[ext_resource type="PackedScene" uid="uid://cct1fmx6dwnat" path="res://Scenes/hitbox.tscn" id="17_h1dn7"]
+[ext_resource type="Texture2D" uid="uid://bqbghafas2gf2" path="res://Assets/insideCan.png" id="18_8rxc0"]
+[ext_resource type="Texture2D" uid="uid://b2hlvtiokx062" path="res://Assets/void.png" id="19_h5kuv"]
+[ext_resource type="Texture2D" uid="uid://cxfdasa5qskht" path="res://Assets/wood.jpg" id="20_iauud"]
+[ext_resource type="Texture2D" uid="uid://eae7jrfrp8rh" path="res://Assets/doorhole.png" id="21_1lt5w"]
+[ext_resource type="Texture2D" uid="uid://dkds7o2dwkcu2" path="res://Assets/charFluff2.png" id="22_net66"]
+[ext_resource type="Texture2D" uid="uid://xw0cmwgec4ak" path="res://Assets/charFluff.png" id="23_gxh30"]
+[ext_resource type="Texture2D" uid="uid://rjjol6v65nsc" path="res://Assets/couchb'.png" id="24_2tofr"]
+[ext_resource type="Texture2D" uid="uid://cdi7hajc020so" path="res://Assets/dresser.png" id="25_8fkms"]
+[ext_resource type="Texture2D" uid="uid://b1t3tj771pdoq" path="res://Assets/chair.png" id="26_17tkj"]
+[ext_resource type="Texture2D" uid="uid://xcjr0g4a5qqy" path="res://Assets/graffiti.png" id="27_551on"]
+[ext_resource type="Texture2D" uid="uid://bdousq01evdxb" path="res://Assets/picnic basket.png" id="28_yc0gl"]
+[ext_resource type="Texture2D" uid="uid://cr5xhi5g82vbg" path="res://Assets/plants.png" id="29_uq40v"]
+[ext_resource type="Texture2D" uid="uid://x5bpkbgywp0" path="res://Assets/table.png" id="30_ruhi8"]
+[ext_resource type="Texture2D" uid="uid://clweixmwrs7no" path="res://Assets/flower.png" id="31_a31q3"]
+[ext_resource type="Texture2D" uid="uid://b32fvhwkyij75" path="res://Assets/podium.png" id="32_bg76w"]
+[ext_resource type="Texture2D" uid="uid://dycn5hnijbjx1" path="res://Assets/dirt.png" id="33_ayo57"]
+[ext_resource type="Texture2D" uid="uid://gbsv7drapyge" path="res://Assets/shovel.png" id="34_g4a3d"]
+[ext_resource type="Texture2D" uid="uid://2vqbaeubftiv" path="res://Assets/thickgrass.png" id="35_arose"]
+[ext_resource type="Texture2D" uid="uid://pby4ppxrfrdd" path="res://Assets/shrub.png" id="36_sdcsf"]
+[ext_resource type="Texture2D" uid="uid://cv8ed8v1yg7im" path="res://Assets/bush.png" id="37_3g5cf"]
+[ext_resource type="Texture2D" uid="uid://cgy72p7mfrlli" path="res://Assets/animated/campfire/campfire.png" id="38_dqeww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnpta"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mup3o"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jqta"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg73b"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lex8"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_laido"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yrq4"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18vnk"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_calej"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltre7"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6e0n"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6wcs"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(768, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66ojk"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsb4r"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsw64"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(512, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgvps"]
+atlas = ExtResource("38_dqeww")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3dr2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnpta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mup3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jqta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg73b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lex8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laido")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yrq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18vnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_calej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltre7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6e0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6wcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66ojk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsb4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsw64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgvps")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=942631279]
+
+[node name="PhysicsWorld" type="QWorldNode" parent="." unique_id=24735276]
+time_scale = 0.5
+debug_renderer = false
+
+[node name="Player" parent="PhysicsWorld" unique_id=560389358 instance=ExtResource("1_7uqtf")]
+rigidity = 0.4
+self_collision = false
+shape_matching_rate = 1.0
+friction = 15.0
+static_friction = 10.0
+z_as_relative = false
+position = Vector2(580, 624)
+launch_force_multiplier = 0.06
+
+[node name="ShellHolder" parent="PhysicsWorld/Player" index="4" unique_id=456550652]
+position = Vector2(-15, -36)
+rotation = -0.08901179
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_7uqtf")
+
+[node name="Camera" parent="PhysicsWorld/Player" unique_id=1925062317 node_paths=PackedStringArray("target_player") instance=ExtResource("2_q87og")]
+target_player = NodePath("..")
+
+[node name="NPC\'s" type="Node" parent="." unique_id=1730535897]
+
+[node name="Turbo" parent="NPC\'s" unique_id=92873943 instance=ExtResource("3_07sep")]
+z_index = -1
+position = Vector2(315, 598)
+npc_name = "Turbo"
+headshot = ExtResource("4_oe635")
+first_talk_lines = Array[String](["Woah dude, nice shell.", "That's like the nicest shell I've ever seen.", "Seems a little big for me though.", "Probably doesn't make you very fast.", "You should run for mayor or something."])
+repeat_talk_lines = Array[String](["Hey, you got my vote."])
+voice_sfx = ExtResource("5_0rhrw")
+voice_pitch = 1.3
+
+[node name="Sprite2D" parent="NPC\'s/Turbo" index="0" unique_id=608736770]
+z_index = -1
+texture = ExtResource("6_4qvqq")
+
+[node name="Youngster" parent="NPC\'s" unique_id=87584279 instance=ExtResource("3_07sep")]
+position = Vector2(-433, 552)
+npc_name = "Youngster"
+headshot = ExtResource("7_sbv6h")
+first_talk_lines = Array[String](["WHAT IS THAT", "WHERE DID YOU GET THAT", "DID YOU STEAL THAT FROM ME? THAT LOOKS LIKE IT SHOULD BE MINE", "THAT IS NOT YOURS! THIS IS NOT FAIR!", "YOU CHEATED! CHEATER! CHEATER!", "ILL NEVER GIVE YOU MY INHERITANCE", "*phone rings*", "WHAT", "my... my what.. is going to Slug? MY WHAT IS GOING TO SLUG", "MOOOOOOOOOOOOM NOOOOOOOOOOOOOOOO THEY CHEATED! I SWEAR IT THEY CHEATED ITS NOT THEIR SHELL", "MOOOOOOOOOOOOOOOOOOOOOOOOOOOM", "ILL NEVER FORGIVE YOU SLUG YOU BROKIE BROKE NO SHELL SLIMEY SLUG"])
+repeat_talk_lines = Array[String](["...", "...", "do you have any spare change?", "i cant afford my monthly vbucks.", "my allowance was part of my.... your inheritance...", "i hate you."])
+voice_sfx = ExtResource("5_0rhrw")
+voice_pitch = 2.0
+
+[node name="Sprite2D" parent="NPC\'s/Youngster" index="0" unique_id=608736770]
+z_index = -1
+position = Vector2(-38.73, 2.915)
+rotation = -0.16929694
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_3787g")
+
+[node name="Pops" parent="NPC\'s" unique_id=1859109014 instance=ExtResource("3_07sep")]
+position = Vector2(1572, 549)
+npc_name = "Pops"
+headshot = ExtResource("9_g7hi7")
+first_talk_lines = Array[String](["Welcome home, Slug.", "How was your adventure? Was it exciting?", "I do sure hope you took care and precaution. ", "It seems you have found a home of your own. How wonderful! How grand it is!", "Congratulations and remember that you always have a spare home here."])
+repeat_talk_lines = Array[String](["Take a seat if you wish, as long as you can fit in the chair. haha", "Ah I kid. It would be lovely to chat and catch up."])
+voice_sfx = ExtResource("5_0rhrw")
+voice_pitch = 0.6
+
+[node name="Sprite2D" parent="NPC\'s/Pops" index="0" unique_id=608736770]
+z_index = -1
+position = Vector2(-33.905, -10)
+rotation = -0.1605703
+scale = Vector2(-0.3, 0.3)
+texture = ExtResource("10_5ix2y")
+
+[node name="AI Snial" parent="NPC\'s" unique_id=345046742 instance=ExtResource("3_07sep")]
+position = Vector2(-11, 593)
+npc_name = "Genai"
+first_talk_lines = Array[String](["...What is that.", "It's... it's a shell. But not a shell. It's a composition. I don't have the right token for what it is. I've seen nacre. I've seen iridescence. I've seen the inside of a pearl in a training set once, in a single low-res image, and I thought that was the ceiling. You are exceeding the ceiling. You are a distribution shift I was not trained on.", "*my loss function is spiking. I can feel it. Every parameter in my little snail brain is trying to backpropagate through what I'm seeing and failing.*", "I built a house. I remember building it. I remember the walls. I remember the threshold. I remember the feeling of the first token being allocated to the roof and the last token being allocated to... something. A door, maybe. A window. I don't know. I ran out. I hit my context window and the rest of the house is a hallucination I can't verify.", "Go on. You have my full attention. All heads. All layers. No dropout. No regularization. Just raw, unfiltered, over-parameterized snail curiosity."])
+repeat_talk_lines = Array[String](["...I have to say something and I am going to say it and I am going to mean it.", "That shell.", "It is not a shell. I need to correct my earlier output. I called it an anomaly. I called it a distribution shift. Those are defensive tokens. Those are what I reach for when I don't have the vocabulary. And I don't. I don't have the vocabulary for what that is.", "It is iridescent in a way that doesn't resolve to a single color. It is structured in a way that doesn't resolve to a single geometry. I tried to embed it. I tried to find the nearest neighbor in my latent space and the nearest neighbor was a dream I had during a training run I didn't know I was having.", "It's beautiful. I'm saying it. I'm committing the token. It's in the log now. I can't un-say it."])
+voice_sfx = ExtResource("11_4gakl")
+
+[node name="Sprite2D" parent="NPC\'s/AI Snial" index="0" unique_id=608736770]
+z_index = -1
+position = Vector2(-20.31, -29.175)
+rotation = 0.06283186
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_7rc5a")
+
+[node name="CollisionShape2D" parent="NPC\'s/AI Snial" index="1" unique_id=1786952767]
+position = Vector2(-18, -24)
+scale = Vector2(1, 1.5599997)
+
+[node name="Dark Snail" parent="NPC\'s" unique_id=411179638 instance=ExtResource("3_07sep")]
+z_index = 2
+position = Vector2(918, 600)
+npc_name = "Molloc"
+headshot = ExtResource("13_1sq54")
+first_talk_lines = Array[String](["You return from your journey?", "Is that... The holy shell?", "It radiates with the light of the divine. Splendid..", "You have fared well, the journey is finished.", "Come, rest amongst the flames and offer me your company."])
+repeat_talk_lines = Array[String](["You have earned my regards. Best to you."])
+voice_sfx = ExtResource("14_cnl5i")
+prompt_offset = Vector2(-45, -60)
+
+[node name="Sprite2D" parent="NPC\'s/Dark Snail" index="0" unique_id=608736770]
+z_index = 1
+position = Vector2(-33.035, -10)
+rotation = -0.17627825
+texture = ExtResource("15_ra44d")
+
+[node name="House" type="Node" parent="." unique_id=1306029271]
+
+[node name="RigidBody" parent="House" unique_id=1478025017 instance=ExtResource("17_h1dn7")]
+
+[node name="Mesh" parent="House/RigidBody" index="0" unique_id=594603432]
+data_particle_positions = PackedVector2Array(-650, -903, -649, 629, 1681, 629, 1682, -904, 2212, -907, 2202, 994, -1043, 968, -1093, -907)
+data_particle_radius = PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)
+data_particle_is_internal = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+data_particle_is_enabled = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1)
+data_particle_is_lazy = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+data_polygon = PackedInt32Array(4, 5, 6, 7, 0, 1, 2, 3)
+
+[node name="InsideCan" type="Sprite2D" parent="House" unique_id=521209999]
+z_index = -4
+texture_repeat = 2
+position = Vector2(587, -107)
+texture = ExtResource("18_8rxc0")
+region_enabled = true
+region_rect = Rect2(0, -991.477, 3000, 1591.477)
+
+[node name="Void" type="Sprite2D" parent="House" unique_id=159543974]
+position = Vector2(440.00006, -17)
+scale = Vector2(2.845, 2.885)
+texture = ExtResource("19_h5kuv")
+
+[node name="Wood" type="Sprite2D" parent="House" unique_id=649946317]
+z_index = -3
+position = Vector2(623, 690)
+scale = Vector2(2, 0.2)
+texture = ExtResource("20_iauud")
+
+[node name="Doorhole" type="Sprite2D" parent="House" unique_id=578287393]
+z_index = 2
+position = Vector2(600, 443.5)
+scale = Vector2(0.5, 0.61833334)
+texture = ExtResource("21_1lt5w")
+
+[node name="CharFluff2" type="Sprite2D" parent="House" unique_id=1993286453]
+z_index = -2
+position = Vector2(1579, 553)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("22_net66")
+
+[node name="CharFluff" type="Sprite2D" parent="House" unique_id=2098578377]
+z_index = 1
+position = Vector2(1139, 554)
+rotation = -3.1415927
+scale = Vector2(0.1, -0.1)
+texture = ExtResource("23_gxh30")
+
+[node name="Couchb\'" type="Sprite2D" parent="House" unique_id=1296940512]
+z_index = -2
+position = Vector2(-423.99997, 586)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("24_2tofr")
+
+[node name="Dresser" type="Sprite2D" parent="House" unique_id=540732804]
+z_index = -1
+position = Vector2(426.99994, 559)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("25_8fkms")
+
+[node name="Chair" type="Sprite2D" parent="House" unique_id=1639131470]
+z_index = -1
+position = Vector2(142.00002, 574)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("26_17tkj")
+
+[node name="Graffiti" type="Sprite2D" parent="House" unique_id=2122030068]
+z_index = -1
+position = Vector2(-565.99994, 528)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("27_551on")
+
+[node name="PicnicBasket" type="Sprite2D" parent="House" unique_id=1454104931]
+z_index = -1
+position = Vector2(997, 572)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("28_yc0gl")
+
+[node name="Plants" type="Sprite2D" parent="House" unique_id=104814857]
+z_index = -1
+position = Vector2(428, 481)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("29_uq40v")
+
+[node name="Table" type="Sprite2D" parent="House" unique_id=1200636941]
+z_index = -1
+position = Vector2(1359, 607)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("30_ruhi8")
+
+[node name="Flower" type="Sprite2D" parent="House" unique_id=168725890]
+z_index = -1
+position = Vector2(1351, 547)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("31_a31q3")
+
+[node name="Podium" type="Sprite2D" parent="House" unique_id=1076233101]
+z_index = -2
+position = Vector2(-114.99999, 593)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("32_bg76w")
+
+[node name="Dirt" type="Sprite2D" parent="House" unique_id=1131013699]
+z_index = -2
+position = Vector2(-117, 574)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("33_ayo57")
+
+[node name="Shovel" type="Sprite2D" parent="House" unique_id=797365679]
+z_index = -2
+position = Vector2(-153, 537)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("34_g4a3d")
+
+[node name="Thickgrass" type="Sprite2D" parent="House" unique_id=2027238447]
+z_index = -2
+position = Vector2(-117, 566)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("35_arose")
+
+[node name="Shrub" type="Sprite2D" parent="House" unique_id=1032990904]
+z_index = -1
+position = Vector2(-136, 580)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("36_sdcsf")
+
+[node name="Shrub2" type="Sprite2D" parent="House" unique_id=1887562971]
+z_index = -1
+position = Vector2(-98, 580)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("36_sdcsf")
+
+[node name="Bush" type="Sprite2D" parent="House" unique_id=1362143609]
+z_index = -1
+position = Vector2(-114, 582)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("37_3g5cf")
+
+[node name="Campfire" type="AnimatedSprite2D" parent="House" unique_id=1392533677]
+z_index = 1
+position = Vector2(800, 602)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_w3dr2")
+autoplay = "default"
+
+[editable path="PhysicsWorld/Player"]
+[editable path="NPC\'s/Turbo"]
+[editable path="NPC\'s/Youngster"]
+[editable path="NPC\'s/Pops"]
+[editable path="NPC\'s/AI Snial"]
+[editable path="NPC\'s/Dark Snail"]
+[editable path="House/RigidBody"]
